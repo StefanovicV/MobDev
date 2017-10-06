@@ -1,0 +1,56 @@
+// The player can buy POKEMONSPECIES which have a cost > 0, or evolve them
+POKEMONSPECIES (use pokeapi.co where possible)
+	Id			int
+	Name			string
+	Type1			string
+	Type2			string
+	Cost			int
+	NextEvolution		POKEMONSPECIES
+	EvolutionCost		int
+	HP			int
+	Attack			int
+	Defense			int
+	Speed			int
+
+// When a player buys a POKEMONSPECIES, he gets a POKEMON with 4 default attacks. Name is optional.
+POKEMON
+	Id			int
+	Species			POKEMONSPECIES
+	Name			string
+	Attack1			ATTACK
+	Attack2			ATTACK
+	Attack3			ATTACK
+	Attack4			ATTACK
+	Owner			PLAYER
+
+// A POKEMON has 4 of these.	
+ATTACK
+	Name			string
+	Type			string
+	Power			int
+	Accuracy		int
+	
+//
+PLAYER
+	Id			int
+	Username		string
+	HashedPassword		string
+	Coins			int
+	AmountPotions		int
+	AmountSuperPotions	int
+	Team			TEAM
+
+// Couples a POKEMON to an ATTACK, to enable creating a list with buyable attacks per pokemon.
+POKEMONATTACKS
+	Species			POKEMONSPECIES
+	Attack			ATTACK
+	Cost			int
+
+// Contains current team of current PLAYER as well as opponent teams.
+TEAM
+	Pokemon1		POKEMON
+	Pokemon2		POKEMON
+	Pokemon3		POKEMON
+	Pokemon4		POKEMON
+	Pokemon5		POKEMON
+	Pokemon6		POKEMON
