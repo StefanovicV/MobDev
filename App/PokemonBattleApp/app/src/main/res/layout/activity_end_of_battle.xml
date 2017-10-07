@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.pokmonapp.mobdevpokmon.EndOfBattle"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/ResultTxtVw"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:text="YOU WON!"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/TeamRating"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="112dp" />
+
+        <TextView
+            android:id="@+id/TeamRating"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:text="Your teamrating:"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/TeamRatingTxtVw"
+            tools:layout_editor_absoluteX="136dp" />
+
+        <TextView
+            android:id="@+id/TeamRatingTxtVw"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="100"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            tools:layout_editor_absoluteX="179dp"
+            tools:layout_editor_absoluteY="239dp" />
+
+        <TextView
+            android:id="@+id/OpponentRating"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:text="Opponent's teamrating:"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/OpponentRatingTxtVw"
+            tools:layout_editor_absoluteX="113dp" />
+
+        <TextView
+            android:id="@+id/OpponentRatingTxtVw"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:text="120"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/Difficulty"
+            tools:layout_editor_absoluteX="179dp" />
+
+        <TextView
+            android:id="@+id/Difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:text="Chosen difficulty:"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/DifficultyTxtVw"
+            tools:layout_editor_absoluteX="134dp" />
+
+        <TextView
+            android:id="@+id/DifficultyTxtVw"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:text="Hard"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/CoinsTxtVw"
+            tools:layout_editor_absoluteX="176dp" />
+
+        <TextView
+            android:id="@+id/CoinsTxtVw"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="21dp"
+            android:layout_weight="1"
+            android:text="You win ... coins!"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:layout_constraintBottom_toTopOf="@+id/backBtn"
+            tools:layout_editor_absoluteX="64dp" />
+
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Back"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="456dp" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
