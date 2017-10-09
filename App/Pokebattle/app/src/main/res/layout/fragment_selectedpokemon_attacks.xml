@@ -1,0 +1,315 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="be.pxl.stefvrijens.pokbattle.SelectedpokemonAttacks">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <GridLayout
+            android:id="@+id/attackContainer1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/customborder"
+            android:columnCount="4"
+            android:rowCount="2">
+
+            <TextView
+                android:id="@+id/attack1Name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Earthquake" />
+
+            <TextView
+                android:id="@+id/attack1PowerLabel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Power:" />
+
+            <TextView
+                android:id="@+id/attack1AccuracyLabel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Accuracy:" />
+
+            <Spinner
+                android:id="@+id/attack1ReplacementSelector"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:background="@android:drawable/btn_dropdown" />
+
+            <TextView
+                android:id="@+id/attack1Type"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Ground" />
+
+            <TextView
+                android:id="@+id/attack1Power"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="100" />
+
+            <TextView
+                android:id="@+id/attack1Accuracy"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="100%" />
+
+            <Button
+                android:id="@+id/attack1ReplaceButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Replace" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:id="@+id/attackContainer2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/customborder"
+            android:columnCount="4"
+            android:rowCount="2">
+
+            <TextView
+                android:id="@+id/attack2Name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Flamethrower" />
+
+            <TextView
+                android:id="@+id/attack2PowerLabel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Power:" />
+
+            <TextView
+                android:id="@+id/attack2AccuracyLabel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Accuracy:" />
+
+            <Spinner
+                android:id="@+id/attack2ReplacementSelector"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:background="@android:drawable/btn_dropdown" />
+
+            <TextView
+                android:id="@+id/attack2Type"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Fire" />
+
+            <TextView
+                android:id="@+id/attack2Power"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="90" />
+
+            <TextView
+                android:id="@+id/attack2Accuracy"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="100%" />
+
+            <Button
+                android:id="@+id/attack2ReplaceButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Replace" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:id="@+id/attackContainer3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/customborder"
+            android:columnCount="4"
+            android:rowCount="2">
+
+            <TextView
+                android:id="@+id/attack3Name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Thunderbolt" />
+
+            <TextView
+                android:id="@+id/attack3PowerLabel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Power:" />
+
+            <TextView
+                android:id="@+id/attack3AccuracyLabel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Accuracy:" />
+
+            <Spinner
+                android:id="@+id/attack3ReplacementSelector"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:background="@android:drawable/btn_dropdown" />
+
+            <TextView
+                android:id="@+id/attack3Type"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Electric" />
+
+            <TextView
+                android:id="@+id/attack3Power"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="70" />
+
+            <TextView
+                android:id="@+id/attack3Accuracy"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="100%" />
+
+            <Button
+                android:id="@+id/attack3ReplaceButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Replace" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:id="@+id/attackContainer4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/customborder"
+            android:columnCount="4"
+            android:rowCount="2">
+
+            <TextView
+                android:id="@+id/attack4Name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Tackle" />
+
+            <TextView
+                android:id="@+id/attack4PowerLabel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Power:" />
+
+            <TextView
+                android:id="@+id/attack4AccuracyLabel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Accuracy:" />
+
+            <Spinner
+                android:id="@+id/attack4ReplacementSelector"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:background="@android:drawable/btn_dropdown" />
+
+            <TextView
+                android:id="@+id/attack4Type"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Normal" />
+
+            <TextView
+                android:id="@+id/attack4Power"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="30" />
+
+            <TextView
+                android:id="@+id/attack4Accuracy"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="100%" />
+
+            <Button
+                android:id="@+id/attack4ReplaceButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:text="Replace" />
+
+        </GridLayout>
+
+    </LinearLayout>
+</FrameLayout>

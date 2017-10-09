@@ -21,7 +21,10 @@
         <activity
             android:name=".PreBattleActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".BattleActivity" android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".BattleActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TeamBuilder"></activity>
     </application>
 
 </manifest>
