@@ -151,6 +151,19 @@
                 app:layout_constraintTop_toTopOf="@+id/selectedPokemonTitle"
                 app:srcCompat="@drawable/pokeballimage" />
 
+            <Button
+                android:id="@+id/evolveButton"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text="Evolve"
+                app:layout_constraintBottom_toBottomOf="@+id/selectedPokemonImage"
+                app:layout_constraintLeft_toLeftOf="@+id/selectedPokemonImage"
+                app:layout_constraintRight_toRightOf="@+id/selectedPokemonImage" />
+
             <TextView
                 android:id="@+id/selectedPokemonTitle"
                 android:layout_width="wrap_content"
@@ -170,7 +183,7 @@
 
             <LinearLayout
                 android:id="@+id/selectedPokemonDetails"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
@@ -179,7 +192,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
-                android:weightSum="3"
+                android:weightSum="4"
                 app:layout_constraintBottom_toTopOf="@+id/imageBottomGuideline"
                 app:layout_constraintLeft_toRightOf="@+id/selectedPokemonImage"
                 app:layout_constraintRight_toRightOf="parent"
@@ -212,6 +225,7 @@
                     android:layout_weight="1"
                     android:text="Rating: 300"
                     android:textAlignment="textStart" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -224,7 +238,9 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageBottomGuideline"
-                android:id="@+id/toggleContainer">
+                android:id="@+id/toggleContainer"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp">
 
                 <ToggleButton
                     android:id="@+id/statsToggle"
