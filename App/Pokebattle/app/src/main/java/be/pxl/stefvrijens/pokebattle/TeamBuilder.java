@@ -9,16 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ToggleButton;
 
-public class TeamBuilder extends AppCompatActivity implements SelectedpokemonStats.OnFragmentInteractionListener, SelectedpokemonAttacks.OnFragmentInteractionListener {
+public class TeamBuilder extends AppCompatActivity implements SelectedpokemonStats.OnFragmentInteractionListener, SelectedpokemonAttacks.OnEditButtonClick {
     ToggleButton statsToggleButton;
     ToggleButton attacksToggleButton;
+    FragmentManager manager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_builder);
-        final FragmentManager manager = getFragmentManager();
+        manager = getFragmentManager();
 
         statsToggleButton = (ToggleButton) findViewById(R.id.statsToggle);
         attacksToggleButton = (ToggleButton)findViewById(R.id.attacksToggle);
@@ -42,6 +43,14 @@ public class TeamBuilder extends AppCompatActivity implements SelectedpokemonSta
                 transaction.commit();
             }
         });
+    }
+
+    @Override
+    public void onButtonClick(View view, int attackNumber) {
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack("");
+        transaction.replace(R.id.teamBuilderFragment, new AttackDetails());
+        transaction.commit();
     }
 
     @Override
