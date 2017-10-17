@@ -3,7 +3,7 @@ package be.pxl.stefvrijens.pokebattle;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SelectedpokemonStats.OnFragmentInteractionListener} interface
+ * {@link AttackDetails.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SelectedpokemonStats#newInstance} factory method to
+ * Use the {@link AttackDetails#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SelectedpokemonStats extends Fragment {
+public class AttackDetails extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +29,7 @@ public class SelectedpokemonStats extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public SelectedpokemonStats() {
+    public AttackDetails() {
         // Required empty public constructor
     }
 
@@ -39,11 +39,11 @@ public class SelectedpokemonStats extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SelectedpokemonStats.
+     * @return A new instance of fragment AttackDetails.
      */
     // TODO: Rename and change types and number of parameters
-    public static SelectedpokemonStats newInstance(String param1, String param2) {
-        SelectedpokemonStats fragment = new SelectedpokemonStats();
+    public static AttackDetails newInstance(String param1, String param2) {
+        AttackDetails fragment = new AttackDetails();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +64,7 @@ public class SelectedpokemonStats extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_selectedpokemon_stats, container, false);
+        return inflater.inflate(R.layout.fragment_attack_details, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
