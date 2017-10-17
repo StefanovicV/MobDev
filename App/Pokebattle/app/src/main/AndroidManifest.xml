@@ -24,7 +24,9 @@
         <activity
             android:name=".BattleActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".TeamBuilder"></activity>
+        <activity android:name=".TeamBuilder" />
+        <activity android:name=".PostBattle" />
+        <activity android:name=".Shop"></activity>
     </application>
 
 </manifest>
