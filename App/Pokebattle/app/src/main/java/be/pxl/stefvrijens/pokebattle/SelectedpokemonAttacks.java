@@ -12,6 +12,7 @@ import android.widget.Button;
 
 
 public class SelectedpokemonAttacks extends Fragment {
+    // YORAN 2. De interface wordt dan hier gedeclareerd
     OnEditButtonClick buttonClickInterface;
     Button attackEditButton1;
     Button attackEditButton2;
@@ -36,6 +37,7 @@ public class SelectedpokemonAttacks extends Fragment {
         }
 
         try {
+            // YORAN 3. De activity waar deze fragment in zit, wordt aan de declaratie in het vorige puntje gekoppeld (die if & try zijn om te controleren of de activity die interface wel implementeert)
             buttonClickInterface = (OnEditButtonClick)a;
         } catch (ClassCastException ex) {
             throw new ClassCastException(a.toString() + " has not implemented buttonClickInterface");
@@ -81,11 +83,12 @@ public class SelectedpokemonAttacks extends Fragment {
     }
 
 
-
+    // YORAN: 4. Dit is de functie die aangeroepen wordt door de knopkes binnen het fragment, de knopkes aan deze functie koppelen heb ik hierboven gedaan (setOnClickListener), verdere uitleg in de TeamBuilder class
     public void editButtonClick(View v, int attackNumber) {
         buttonClickInterface.onButtonClick(v, attackNumber);
     }
 
+    // YORAN: 1. deze interface aanmaken
     public interface OnEditButtonClick {
         void onButtonClick(View view, int attackNumber);
     }

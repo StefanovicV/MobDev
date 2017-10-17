@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ToggleButton;
 
+// YORAN 5. De interface die we net hebben aangemaakt hier geïmplementeerd
 public class TeamBuilder extends AppCompatActivity implements SelectedpokemonStats.OnFragmentInteractionListener, SelectedpokemonAttacks.OnEditButtonClick {
     ToggleButton statsToggleButton;
     ToggleButton attacksToggleButton;
@@ -45,6 +46,7 @@ public class TeamBuilder extends AppCompatActivity implements SelectedpokemonSta
         });
     }
 
+    // YORAN 6. Deze functie (uit de interface die we net hebben gemaakt) wordt nu aangeroepen als die ook aangeroepen wordt in het fragment.
     @Override
     public void onButtonClick(View view, int attackNumber) {
         FragmentTransaction transaction = manager.beginTransaction();
