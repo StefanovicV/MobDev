@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="be.pxl.stefvrijens.pokbattle.PreBattleActivity"
+    tools:context="be.pxl.stefvrijens.pokebattle.PreBattleActivity"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
@@ -50,7 +50,7 @@
                 android:layout_weight="1"
                 android:text="Your Team:"
                 android:textAlignment="center"
-                android:textAppearance="@android:style/TextAppearance.Material.Title" />
+                android:textAppearance="@android:style/TextAppearance.Material.Title"/>
 
             <LinearLayout
                 android:id="@+id/teamImages"
@@ -64,42 +64,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageView
                     android:id="@+id/pokemon2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageView
                     android:id="@+id/pokemon3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageView
                     android:id="@+id/pokemon4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageView
                     android:id="@+id/pokemon5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageView
                     android:id="@+id/pokemon6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
             </LinearLayout>
 
             <TextView
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Current Teamrating: 1500"
-                android:textAlignment="center" />
+                android:textAlignment="center"/>
 
             <Button
                 android:id="@+id/changeTeamButton"
@@ -116,8 +116,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="goToTeamBuilder"
-                android:text="Change Team" />
+                android:text="Change Team"/>
         </LinearLayout>
+                
 
         <LinearLayout
             android:id="@+id/difficultyButtons"
@@ -141,7 +142,7 @@
                 android:layout_weight="1"
                 android:text="ToggleButton"
                 android:textOff="Easy"
-                android:textOn="Easy" />
+                android:textOn="Easy"/>
 
             <ToggleButton
                 android:id="@+id/mediumButton"
@@ -150,7 +151,7 @@
                 android:layout_weight="1"
                 android:text="ToggleButton"
                 android:textOff="Medium"
-                android:textOn="Medium" />
+                android:textOn="Medium"/>
 
             <ToggleButton
                 android:id="@+id/hardButton"
@@ -160,7 +161,8 @@
                 android:checked="false"
                 android:text="ToggleButton"
                 android:textOff="Hard"
-                android:textOn="Hard" />
+                android:textOn="Hard"/>
+        </LinearLayout>
 
         </LinearLayout>
 

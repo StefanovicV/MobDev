@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="be.pxl.stefvrijens.pokbattle.TeamBuilder">
+    tools:context="be.pxl.stefvrijens.pokebattle.TeamBuilder">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -58,7 +58,7 @@
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageButton
                     android:id="@+id/activePokemonButton2"
@@ -67,7 +67,7 @@
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageButton
                     android:id="@+id/activePokemonButton3"
@@ -76,7 +76,7 @@
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageButton
                     android:id="@+id/activePokemonButton4"
@@ -85,7 +85,7 @@
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageButton
                     android:id="@+id/activePokemonButton5"
@@ -94,7 +94,7 @@
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageButton
                     android:id="@+id/activePokemonButton6"
@@ -103,7 +103,7 @@
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/pokeballimage" />
+                    app:srcCompat="@drawable/pokeballimageresized" />
             </LinearLayout>
 
             <TextView
@@ -149,7 +149,20 @@
                 app:layout_constraintBottom_toTopOf="@+id/imageBottomGuideline"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/selectedPokemonTitle"
-                app:srcCompat="@drawable/pokeballimage" />
+                app:srcCompat="@drawable/pokeballimageresized" />
+
+            <Button
+                android:id="@+id/evolveButton"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text="Evolve"
+                app:layout_constraintBottom_toBottomOf="@+id/selectedPokemonImage"
+                app:layout_constraintLeft_toLeftOf="@+id/selectedPokemonImage"
+                app:layout_constraintRight_toRightOf="@+id/selectedPokemonImage" />
 
             <TextView
                 android:id="@+id/selectedPokemonTitle"
@@ -179,7 +192,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
-                android:weightSum="3"
+                android:weightSum="4"
                 app:layout_constraintBottom_toTopOf="@+id/imageBottomGuideline"
                 app:layout_constraintLeft_toRightOf="@+id/selectedPokemonImage"
                 app:layout_constraintRight_toRightOf="parent"
@@ -212,6 +225,7 @@
                     android:layout_weight="1"
                     android:text="Rating: 300"
                     android:textAlignment="textStart" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -247,6 +261,7 @@
             <fragment
                 android:id="@+id/fragment"
                 class="be.pxl.stefvrijens.pokbattle.SelectedpokemonStats"
+                android:name="be.pxl.stefvrijens.pokebattle.BattleSwitchPokemon"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"

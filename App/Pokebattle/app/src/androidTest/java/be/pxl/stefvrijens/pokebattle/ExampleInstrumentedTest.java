@@ -1,4 +1,4 @@
-package be.pxl.stefvrijens.pokbattle;
+package be.pxl.stefvrijens.pokebattle;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

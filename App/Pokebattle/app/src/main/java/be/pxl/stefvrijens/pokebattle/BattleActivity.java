@@ -1,4 +1,4 @@
-package be.pxl.stefvrijens.pokbattle;
+package be.pxl.stefvrijens.pokebattle;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
