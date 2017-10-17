@@ -183,7 +183,7 @@
 
             <LinearLayout
                 android:id="@+id/selectedPokemonDetails"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
@@ -192,7 +192,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
-                android:weightSum="4"
+                android:weightSum="3"
                 app:layout_constraintBottom_toTopOf="@+id/imageBottomGuideline"
                 app:layout_constraintLeft_toRightOf="@+id/selectedPokemonImage"
                 app:layout_constraintRight_toRightOf="parent"
@@ -201,7 +201,7 @@
                 <TextView
                     android:id="@+id/selectedPokemonName"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_gravity="start"
                     android:layout_weight="1"
                     android:text="PlayerPokemon"
@@ -211,7 +211,7 @@
                 <TextView
                     android:id="@+id/selectedPokemonTypes"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_gravity="start"
                     android:layout_weight="1"
                     android:text="Fire/Flying"
@@ -220,7 +220,7 @@
                 <TextView
                     android:id="@+id/selectedPokemonRating"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_gravity="start"
                     android:layout_weight="1"
                     android:text="Rating: 300"
@@ -260,7 +260,7 @@
 
             <fragment
                 android:id="@+id/fragment"
-                android:name="be.pxl.stefvrijens.pokebattle.BattleSwitchPokemon"
+                class="be.pxl.stefvrijens.pokebattle.SelectedpokemonStats"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
