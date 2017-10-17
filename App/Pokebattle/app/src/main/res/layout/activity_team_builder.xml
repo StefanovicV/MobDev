@@ -170,7 +170,7 @@
 
             <LinearLayout
                 android:id="@+id/selectedPokemonDetails"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
@@ -224,7 +224,9 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageBottomGuideline"
-                android:id="@+id/toggleContainer">
+                android:id="@+id/toggleContainer"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp">
 
                 <ToggleButton
                     android:id="@+id/statsToggle"
@@ -244,7 +246,7 @@
 
             <fragment
                 android:id="@+id/fragment"
-                android:name="be.pxl.stefvrijens.pokbattle.BattleSwitchPokemon"
+                class="be.pxl.stefvrijens.pokbattle.SelectedpokemonStats"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
