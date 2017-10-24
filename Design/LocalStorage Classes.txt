@@ -1,0 +1,8 @@
+PLAYER
+	Username		string
+	Coins			int
+	AmountPotions		int
+	AmountSuperPotions	int
+	BoughtAttacks		Attack[]
+	Pokemon			Pokemon[]
+	CurrentTeam		Pokemon[]
