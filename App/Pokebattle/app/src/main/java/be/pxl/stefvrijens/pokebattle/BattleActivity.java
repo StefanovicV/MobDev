@@ -7,7 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class BattleActivity extends AppCompatActivity implements BattleVisuals.OnFragmentInteractionListener, BattleChoice.OnFragmentInteractionListener, BattleChoice.OnFightButtonClick {
+public class BattleActivity extends AppCompatActivity implements BattleVisuals.OnFragmentInteractionListener, BattleChoice.OnFragmentInteractionListener, BattleAttacks.OnFragmentInteractionListener, BattleItems.OnFragmentInteractionListener, BattleSwitchPokemon.OnFragmentInteractionListener,
+        BattleChoice.OnFightButtonClick, BattleChoice.OnUseItemButtonClick, BattleChoice.OnSwitchPokemonButtonClick {
 
     FragmentManager manager;
 
@@ -24,10 +25,26 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
     }
 
     @Override
-    public void onButtonClick(View view) {
+    public void doFightButtonClick(View view) {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack("");
         transaction.replace(R.id.battleChoice, new BattleAttacks());
+        transaction.commit();
+    }
+
+    @Override
+    public void doUseItemButtonClick(View view) {
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack("");
+        transaction.replace(R.id.battleChoice, new BattleItems());
+        transaction.commit();
+    }
+
+    @Override
+    public void doSwitchButtonClick(View view) {
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack("");
+        transaction.replace(R.id.battleChoice, new BattleSwitchPokemon());
         transaction.commit();
     }
 }
