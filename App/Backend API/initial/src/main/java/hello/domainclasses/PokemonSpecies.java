@@ -1,0 +1,121 @@
+package hello.domainclasses;
+
+/**
+ * Created by stefv on 24-Oct-17.
+ */
+public class PokemonSpecies {
+    private int id;
+    private String name;
+    private String type1;
+    private String type2;
+    private int cost;
+    private PokemonSpecies nextEvolution;
+    private int evolutionCost;
+    private int hp;
+    private int attack;
+    private int defense;
+    private int speed;
+
+
+    public PokemonSpecies(int id, String name, String type1, String type2, int cost, PokemonSpecies nextEvolution, int evolutionCost, int hp, int attack, int defense, int speed) {
+        this.id = id;
+        this.name = name;
+        this.type1 = type1;
+        this.type2 = type2;
+        this.cost = cost;
+        this.nextEvolution = nextEvolution;
+        this.evolutionCost = evolutionCost;
+        this.hp = hp;
+        this.attack = attack;
+        this.defense = defense;
+        this.speed = speed;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType1() {
+        return type1;
+    }
+
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
+
+    public String getType2() {
+        return type2;
+    }
+
+    public void setType2(String type2) {
+        this.type2 = type2;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public PokemonSpecies getNextEvolution() {
+        return nextEvolution;
+    }
+
+    public void setNextEvolution(PokemonSpecies nextEvolution) {
+        this.nextEvolution = nextEvolution;
+    }
+
+    public int getEvolutionCost() {
+        return evolutionCost;
+    }
+
+    public void setEvolutionCost(int evolutionCost) {
+        this.evolutionCost = evolutionCost;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+}

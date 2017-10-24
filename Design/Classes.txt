@@ -34,7 +34,6 @@ ATTACK
 PLAYER
 	Id			int
 	Username		string
-	HashedPassword		string
 	Coins			int
 	AmountPotions		int
 	AmountSuperPotions	int
