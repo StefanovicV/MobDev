@@ -13,15 +13,15 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
+        android:weightSum="12"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
-        android:weightSum="12">
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent">
 
         <LinearLayout
             android:id="@+id/teamPreview"
@@ -50,6 +50,7 @@
                 android:layout_weight="1"
                 android:text="Your Team:"
                 android:textAlignment="center"
+
                 android:textAppearance="@android:style/TextAppearance.Material.Title" />
 
             <LinearLayout
@@ -108,7 +109,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Current Teamrating: 1500"
-                android:textAlignment="center" />
+                android:textAlignment="center"/>
+
 
             <Button
                 android:id="@+id/changeTeamButton"
@@ -141,7 +143,6 @@
                 android:text="ToggleButton"
                 android:textOff="Easy"
                 android:textOn="Easy" />
-
             <ToggleButton
                 android:id="@+id/mediumButton"
                 android:layout_width="match_parent"
@@ -149,7 +150,8 @@
                 android:layout_weight="1"
                 android:text="ToggleButton"
                 android:textOff="Medium"
-                android:textOn="Medium" />
+                android:textOn="Medium"/>
+
 
             <ToggleButton
                 android:id="@+id/hardButton"
@@ -164,7 +166,6 @@
         </LinearLayout>
 
         <Button
-
             android:id="@+id/startButton"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -178,7 +179,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/difficultyButtons" />
+            app:layout_constraintTop_toBottomOf="@+id/difficultyButtons"
+            />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

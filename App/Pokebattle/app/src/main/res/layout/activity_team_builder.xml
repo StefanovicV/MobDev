@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.33"
-                tools:layout_editor_absoluteY="198dp"
+                tools:layout_editor_absoluteY="212dp"
                 tools:layout_editor_absoluteX="8dp" />
 
             <ImageView
@@ -184,7 +184,7 @@
 
             <LinearLayout
                 android:id="@+id/selectedPokemonDetails"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
@@ -266,6 +266,7 @@
             <fragment
                 android:id="@+id/teamBuilderFragment"
                 class="be.pxl.stefvrijens.pokebattle.SelectedpokemonStats"
+                android:name="be.pxl.stefvrijens.pokebattle.BattleSwitchPokemon"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"

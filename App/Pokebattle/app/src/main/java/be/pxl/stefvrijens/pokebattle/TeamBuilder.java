@@ -57,6 +57,6 @@ public class TeamBuilder extends AppCompatActivity implements SelectedpokemonSta
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-
+        //public void onFragmentInteraction(Uri uri);
     }
 }
