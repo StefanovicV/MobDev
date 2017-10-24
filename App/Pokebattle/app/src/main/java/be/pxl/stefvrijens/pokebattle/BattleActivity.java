@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ToggleButton;
 
 public class BattleActivity extends AppCompatActivity implements BattleVisuals.OnFragmentInteractionListener, BattleChoice.OnFragmentInteractionListener, BattleAttacks.OnFragmentInteractionListener, BattleItems.OnFragmentInteractionListener, BattleSwitchPokemon.OnFragmentInteractionListener,
         BattleChoice.OnFightButtonClick, BattleChoice.OnUseItemButtonClick, BattleChoice.OnSwitchPokemonButtonClick {
