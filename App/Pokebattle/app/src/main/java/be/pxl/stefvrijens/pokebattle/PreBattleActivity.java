@@ -13,14 +13,4 @@ public class PreBattleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_battle);
     }
-
-    public void goToTeamBuilder(View view) {
-        Intent intent = new Intent (this, TeamBuilder.class);
-        startActivity(intent);
-    }
-
-    public void goToFight(View view) {
-        Intent intent = new Intent (this, BattleActivity.class);
-        startActivity(intent);
-    }
 }

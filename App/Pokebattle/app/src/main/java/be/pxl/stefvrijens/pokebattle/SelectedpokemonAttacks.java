@@ -85,7 +85,7 @@ public class SelectedpokemonAttacks extends Fragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
-
+	
     // YORAN: 4. Dit is de functie die aangeroepen wordt door de knopkes binnen het fragment, de knopkes aan deze functie koppelen heb ik hierboven gedaan (setOnClickListener), verdere uitleg in de TeamBuilder class
     public void editButtonClick(View v, int attackNumber) {
         buttonClickInterface.onButtonClick(v, attackNumber);
