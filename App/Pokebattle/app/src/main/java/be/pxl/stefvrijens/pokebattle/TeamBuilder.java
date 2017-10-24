@@ -22,7 +22,7 @@ public class TeamBuilder extends AppCompatActivity implements SelectedpokemonSta
         setContentView(R.layout.activity_team_builder);
         manager = getFragmentManager();
 
-        statsToggleButton = (ToggleButton) findViewById(R.id.statsToggle);
+        statsToggleButton = (ToggleButton)findViewById(R.id.statsToggle);
         attacksToggleButton = (ToggleButton)findViewById(R.id.attacksToggle);
 
         statsToggleButton.setOnClickListener(new View.OnClickListener(){
