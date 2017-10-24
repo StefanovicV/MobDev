@@ -1,0 +1,86 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="be.pxl.stefvrijens.pokebattle.AttackDetails">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2">
+
+        <TextView
+            android:id="@+id/attackName"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:width="0dp"
+            android:height="0dp"
+            android:text="Earthquake"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/attackType"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:width="0dp"
+            android:height="0dp"
+            android:text="Ground"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/attackPowerLabel"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:width="0dp"
+            android:height="0dp"
+            android:text="Power:"
+            android:textAlignment="textEnd" />
+
+        <TextView
+            android:id="@+id/attackPowerValue"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:width="0dp"
+            android:height="0dp"
+            android:text="100" />
+
+        <TextView
+            android:id="@+id/attackAccuracyLabel"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:width="0dp"
+            android:height="0dp"
+            android:text="Accuracy:"
+            android:textAlignment="textEnd" />
+
+        <TextView
+            android:id="@+id/attackAccuracyValue"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:width="0dp"
+            android:height="0dp"
+            android:text="100%" />
+
+        <Spinner
+            android:id="@+id/newAttackSelector"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:width="0dp"
+            android:height="0dp"
+            android:layout_columnSpan="2"/>
+
+        <Button
+            android:id="@+id/newAttackConfirmButton"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:width="0dp"
+            android:height="0dp"
+            android:text="Change" />
+
+    </GridLayout>
+</FrameLayout>
