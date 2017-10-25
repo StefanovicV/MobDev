@@ -1,0 +1,20 @@
+0. General
+	a. On startup: create localstorage file if not existing
+		a. Localstorage inventory (has 0 potions, 0 super potions, 1 attack (tackle) & 10 coins)
+		b. Localstorage pokemons (has 1 Pidgey, current team is pidgey)
+
+1. Battle
+	a. Write battle logic (turn system, damage calculation, player actions, pokemon fainted, battle over)
+	b. Implement battle using hardcoded player & enemy
+	c. Get random enemy from API
+	d. Get player from localstorage
+
+2. Shop
+	a. Get items, pokemons & attacks from API
+	b. Edit layout: show item price + player inventory
+	c. Display player inventory & coins from localstorage
+	d. Write shop logic (check if enough coins, subtract coins, add item (remove attack from shop))
+
+3. Teambuilder
+	a. Get pokemon & attacks from localstorage
+	b. Implement logic (swap pokemon in currentteam, evolve pokemon, switch between bought attacks)
