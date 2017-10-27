@@ -41,13 +41,34 @@ public class SpeciesList {
     private static PokemonSpecies machoke = new PokemonSpecies(23, "Machoke", "Fighting", "", 0, machamp, 200, 70, 50, 80, 40);
     private static PokemonSpecies machamp = new PokemonSpecies(24, "Machamp", "Fighting", "", 0, null, 0, 100, 60, 100, 40);
 
-    private static PokemonSpecies bellsprout = new PokemonSpecies(25, "Bellsprout", "Grass", "Poison", 0, weepinbell, 150, 50, 40, 60, 40);
-    private static PokemonSpecies weepinbell = new PokemonSpecies(26, "Weepinbell", "Grass", "Poison", 0, victreebell, 200, 70, 50, 80, 40);
-    private static PokemonSpecies victreebell = new PokemonSpecies(27, "Victreebell", "Grass", "Poison", 0, null, 0, 100, 60, 100, 40);
+    private static PokemonSpecies gastly = new PokemonSpecies(25, "Gastly", "Ghost", "Poison", 0, haunter, 150, 50, 40, 60, 40);
+    private static PokemonSpecies haunter = new PokemonSpecies(26, "Haunter", "Ghost", "Poison", 0, gengar, 200, 70, 50, 80, 40);
+    private static PokemonSpecies gengar = new PokemonSpecies(27, "Gengar", "Ghost", "Poison", 0, null, 0, 100, 60, 100, 40);
 
     private static PokemonSpecies geodude = new PokemonSpecies(28, "Geodude", "Rock", "Ground", 0, graveler, 150, 50, 40, 60, 40);
     private static PokemonSpecies graveler = new PokemonSpecies(29, "Graveler", "Rock", "Ground", 0, golem, 200, 70, 50, 80, 40);
     private static PokemonSpecies golem = new PokemonSpecies(30, "Golem", "Rock", "Ground", 0, null, 0, 100, 60, 100, 40);
+
+    private static PokemonSpecies pichu = new PokemonSpecies(31, "Pichu", "Electric", "", 0, pikachu, 150, 50, 40, 60, 40);
+    private static PokemonSpecies pikachu = new PokemonSpecies(32, "Pikachu", "Electric", "", 0, raichu, 200, 70, 50, 80, 40);
+    private static PokemonSpecies raichu = new PokemonSpecies(33, "Raichu", "Electric", "", 0, null, 0, 100, 60, 100, 40);
+
+    private static PokemonSpecies zubat = new PokemonSpecies(34, "Zubat", "Poison", "Flying", 0, golbat, 150, 50, 40, 60, 40);
+    private static PokemonSpecies golbat = new PokemonSpecies(35, "Golbat", "Poison", "Flying", 0, crobat, 200, 70, 50, 80, 40);
+    private static PokemonSpecies crobat = new PokemonSpecies(36, "Crobat", "Poison", "Flying", 0, null, 0, 100, 60, 100, 40);
+
+    private static PokemonSpecies weedle = new PokemonSpecies(37, "Weedle", "Bug", "Poison", 0, kakuna, 150, 50, 40, 60, 40);
+    private static PokemonSpecies kakuna = new PokemonSpecies(38, "Kakuna", "Bug", "Poison", 0, beedrill, 200, 70, 50, 80, 40);
+    private static PokemonSpecies beedrill = new PokemonSpecies(39, "Beedrill", "Bug", "Poison", 0, null, 0, 100, 60, 100, 40);
+
+    private static PokemonSpecies oddish = new PokemonSpecies(40, "Oddish", "Grass", "Poison", 0, gloom, 150, 50, 40, 60, 40);
+    private static PokemonSpecies gloom = new PokemonSpecies(41, "Gloom", "Grass", "Poison", 0, vileplume, 200, 70, 50, 80, 40);
+    private static PokemonSpecies vileplume = new PokemonSpecies(42, "Vileplume", "Grass", "Poison", 0, null, 0, 100, 60, 100, 40);
+
+    private static PokemonSpecies dratini = new PokemonSpecies(43, "Dratini", "Dragon", "", 0, dragonair, 150, 50, 40, 60, 40);
+    private static PokemonSpecies dragonair = new PokemonSpecies(44, "Dragonair", "Dragon", "", 0, dragonite, 200, 70, 50, 80, 40);
+    private static PokemonSpecies dragonite = new PokemonSpecies(45, "Dragonite", "Dragon", "", 0, null, 0, 100, 60, 100, 40);
+
 
 
     private static List<PokemonSpecies> allSpecies = Arrays.asList(venusaur, ivysaur, bulbasaur);
