@@ -6,32 +6,36 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import be.pxl.stefvrijens.pokebattle.domainclasses.Attack;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
 
-public class BattleActivity extends AppCompatActivity implements BattleVisuals.OnFragmentInteractionListener, BattleChoice.OnFragmentInteractionListener, BattleAttacks.OnAttackButtonClick {
+public class BattleActivity extends AppCompatActivity implements BattleVisuals.OnFragmentInteractionListener, BattleChoice.OnFragmentInteractionListener, BattleAttacks.OnFragmentInteractionListener, BattleItems.OnFragmentInteractionListener, BattleSwitchPokemon.OnFragmentInteractionListener,
+        BattleChoice.OnFightButtonClick, BattleChoice.OnUseItemButtonClick, BattleChoice.OnSwitchPokemonButtonClick {
     Pokemon playerPokemon;
     Pokemon enemyPokemon;
     List<Pokemon> playerTeam;
     List<Pokemon> enemyTeam;
     int enemyPokemonNumber;
     Random rand = new Random();
+    FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
+
         // TODO: Get playerTeam from localStorage
         enemyTeam = new ArrayList<Pokemon>();
         enemyPokemonNumber = 0;
         generateEnemyTeam();
         playerPokemon = playerTeam.get(0);
         enemyPokemon = enemyTeam.get(0);
+        manager = getFragmentManager();
     }
 
     @Override
@@ -39,8 +43,28 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
 
     }
 
-    public void goToAttackStyles(View view) {
-        
+    @Override
+    public void doFightButtonClick(View view) {
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack("");
+        transaction.replace(R.id.battleChoice, new BattleAttacks());
+        transaction.commit();
+    }
+
+    @Override
+    public void doUseItemButtonClick(View view) {
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack("");
+        transaction.replace(R.id.battleChoice, new BattleItems());
+        transaction.commit();
+    }
+
+    @Override
+    public void doSwitchButtonClick(View view) {
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack("");
+        transaction.replace(R.id.battleChoice, new BattleSwitchPokemon());
+        transaction.commit();
     }
 
     public void generateEnemyTeam() {
