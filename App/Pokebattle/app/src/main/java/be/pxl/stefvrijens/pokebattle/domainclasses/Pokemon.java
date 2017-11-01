@@ -54,16 +54,16 @@ public class Pokemon {
         if (incomingAttack.getType().equals(attackingPokemon.getSpecies().getType1()) || incomingAttack.getType().equals(attackingPokemon.getSpecies().getType2())) {
             damage = 1.5 * damage;
         }
-        if (species.getType1().isStrongAgainst(incomingAttack.getType())) {
+        if (species.getType1().hasResistanceTo(incomingAttack.getType())) {
             damage = 0.5 * damage;
-        }
-        if (species.getType2().isStrongAgainst(incomingAttack.getType())) {
-            damage = 0.5 * damage;
-        }
-        if (species.getType1().isWeakAgainst(incomingAttack.getType())) {
+    }
+        if (species.getType2().hasResistanceTo(incomingAttack.getType())) {
+        damage = 0.5 * damage;
+    }
+        if (species.getType1().hasWeaknessTo(incomingAttack.getType())) {
             damage = 2 * damage;
         }
-        if (species.getType2().isWeakAgainst(incomingAttack.getType())) {
+        if (species.getType2().hasWeaknessTo(incomingAttack.getType())) {
             damage = 2 * damage;
         }
         int powerDifference = attackingPokemon.getSpecies().getAttack() - species.getDefense();

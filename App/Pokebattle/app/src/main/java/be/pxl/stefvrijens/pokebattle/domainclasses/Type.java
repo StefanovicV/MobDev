@@ -5,45 +5,154 @@ package be.pxl.stefvrijens.pokebattle.domainclasses;
  */
 
 public enum Type {
-    NORMAL(new Type[]{Type.FIGHT}, new Type[]{Type.GHOST}),
-    FIRE(new Type[]{Type.WATER, Type.GROUND, Type.ROCK}, new Type[]{Type.FIRE, Type.GRASS, Type.ICE, Type.BUG, Type.STEEL}),
-    WATER(new Type[]{Type.ELECTRIC, Type.GRASS}, new Type[]{Type.FIRE, Type.WATER, Type.ICE, Type.STEEL}),
-    ELECTRIC(new Type[]{Type.GROUND}, new Type[]{Type.ELECTRIC, Type.FLYING, Type.STEEL}),
-    GRASS(new Type[]{Type.FIRE, Type.ICE, Type.POISON, Type.FLYING, Type.BUG}, new Type[]{Type.WATER, Type.ELECTRIC, Type.GRASS, Type.GROUND}),
-    ICE(new Type[]{Type.FIRE, Type.FIGHT, Type.ROCK, Type.STEEL}, new Type[]{Type.ICE}),
-    FIGHT(new Type[]{Type.FLYING, Type.PSYCHIC}, new Type[]{Type.BUG, Type.ROCK, Type.DARK}),
-    POISON(new Type[]{Type.GROUND, Type.PSYCHIC}, new Type[]{Type.GRASS, Type.POISON, Type.FIGHT, Type.BUG}),
-    GROUND(new Type[]{Type.WATER, Type.GRASS, Type.ICE}, new Type[]{Type.ELECTRIC, Type.POISON, Type.ROCK}),
-    FLYING(new Type[]{Type.ELECTRIC, Type.ICE, Type.ROCK}, new Type[]{Type.GRASS, Type.FIGHT, Type.GROUND, Type.BUG}),
-    PSYCHIC(new Type[]{Type.BUG, Type.GHOST, Type.DARK}, new Type[]{Type.FIGHT, Type.PSYCHIC}),
-    BUG(new Type[]{Type.FIRE, Type.FLYING, Type.ROCK}, new Type[]{Type.GRASS, Type.FIGHT, Type.GROUND}),
-    ROCK(new Type[]{Type.WATER, Type.GRASS, Type.FIGHT, Type.GROUND, Type.STEEL}, new Type[]{Type.NORMAL, Type.FIRE, Type.POISON, Type.FLYING}),
-    GHOST(new Type[]{Type.GHOST, Type.DARK}, new Type[]{Type.NORMAL, Type.FIGHT, Type.POISON, Type.BUG}),
-    DRAGON(new Type[]{Type.ICE, Type.DRAGON}, new Type[]{Type.FIRE, Type.WATER, Type.ELECTRIC, Type.GRASS}),
-    DARK(new Type[]{Type.FIGHT, Type.BUG}, new Type[]{Type.PSYCHIC, Type.GHOST, Type.DARK}),
-    STEEL(new Type[]{Type.FIRE, Type.FIGHT, Type.GROUND}, new Type[]{Type.NORMAL, Type.GRASS, Type.ICE, Type.POISON, Type.FLYING, Type.PSYCHIC, Type.BUG, Type.ROCK, Type.DRAGON, Type.STEEL});
+    NORMAL("normal"),
+    FIRE("fire"),
+    WATER("water"),
+    ELECTRIC("electric"),
+    GRASS("grass"),
+    ICE("ice"),
+    FIGHT("fight"),
+    POISON("poison"),
+    GROUND("ground"),
+    FLYING("flying"),
+    PSYCHIC("psychic"),
+    BUG("bug"),
+    ROCK("rock"),
+    GHOST("ghost"),
+    DRAGON("dragon"),
+    DARK("dark"),
+    STEEL("steel");
 
-    // These are considered defensively: the attack inside the property is considered the attacker.
-    // These are the types that do double damage against this type
-    private Type[] weakAgainst;
-    // These are the types that do half damage against this type
-    private Type[] strongAgainst;
-    Type(Type[] weakTypes, Type[] strongTypes) {
-        this.weakAgainst = strongTypes;
-        this.strongAgainst = weakTypes;
+    private String typeName;
+
+    Type(String name) {
+        typeName = name;
     }
 
-    public boolean isStrongAgainst(Type type) {
-        for (int i = 0; i < this.strongAgainst.length; i++) {
-            if (this.strongAgainst[i].equals(type)) {
+    public boolean hasResistanceTo(Type attackingType) {
+        Type[] resistances;
+        switch (this.typeName) {
+            case ("normal"):
+                resistances = new Type[]{Type.GHOST};
+                break;
+            case ("fire"):
+                resistances = new Type[]{Type.FIRE, Type.GRASS, Type.ICE, Type.BUG, Type.STEEL};
+                break;
+            case ("water"):
+                resistances = new Type[]{Type.FIRE, Type.WATER, Type.ICE, Type.STEEL};
+                break;
+            case ("electric"):
+                resistances = new Type[]{Type.ELECTRIC, Type.FLYING, Type.STEEL};
+                break;
+            case ("grass"):
+                resistances = new Type[]{Type.WATER, Type.ELECTRIC, Type.GRASS, Type.GROUND};
+                break;
+            case ("ice"):
+                resistances = new Type[]{Type.ICE};
+                break;
+            case ("fight"):
+                resistances = new Type[]{Type.BUG, Type.ROCK, Type.DARK};
+                break;
+            case ("poison"):
+                resistances = new Type[]{Type.GRASS, Type.POISON, Type.FIGHT, Type.BUG};
+                break;
+            case ("ground"):
+                resistances = new Type[]{Type.ELECTRIC, Type.POISON, Type.ROCK};
+                break;
+            case ("flying"):
+                resistances = new Type[]{Type.GRASS, Type.FIGHT, Type.GROUND, Type.BUG};
+                break;
+            case ("psychic"):
+                resistances = new Type[]{Type.FIGHT, Type.PSYCHIC};
+                break;
+            case ("bug"):
+                resistances = new Type[]{Type.GRASS, Type.FIGHT, Type.GROUND};
+                break;
+            case ("rock"):
+                resistances = new Type[]{Type.NORMAL, Type.FIRE, Type.POISON, Type.FLYING};
+                break;
+            case ("ghost"):
+                resistances = new Type[]{Type.NORMAL, Type.FIGHT, Type.POISON, Type.BUG};
+                break;
+            case ("dragon"):
+                resistances = new Type[]{Type.FIRE, Type.WATER, Type.ELECTRIC, Type.GRASS};
+                break;
+            case ("dark"):
+                resistances = new Type[]{Type.PSYCHIC, Type.GHOST, Type.DARK};
+                break;
+            case ("steel"):
+                resistances = new Type[]{Type.NORMAL, Type.GRASS, Type.ICE, Type.POISON, Type.FLYING, Type.PSYCHIC, Type.BUG, Type.ROCK, Type.DRAGON, Type.STEEL};
+                break;
+            default:
+                resistances = new Type[0];
+        }
+        for (int i = 0; i < resistances.length; i++) {
+            if (resistances[i] == attackingType) {
                 return true;
             }
         }
         return false;
     }
-    public boolean isWeakAgainst(Type type) {
-        for (int i = 0; i < this.weakAgainst.length; i++) {
-            if (this.weakAgainst[i].equals(type)) {
+
+    public boolean hasWeaknessTo(Type attackingType) {
+        Type[] weaknesses;
+        switch (this.typeName) {
+            case ("normal"):
+                weaknesses = new Type[]{Type.FIGHT};
+                break;
+            case ("fire"):
+                weaknesses = new Type[]{Type.WATER, Type.GROUND, Type.ROCK};
+                break;
+            case ("water"):
+                weaknesses = new Type[]{Type.ELECTRIC, Type.GRASS};
+                break;
+            case ("electric"):
+                weaknesses = new Type[]{Type.GROUND};
+                break;
+            case ("grass"):
+                weaknesses = new Type[]{Type.FIRE, Type.ICE, Type.POISON, Type.FLYING, Type.BUG};
+                break;
+            case ("ice"):
+                weaknesses = new Type[]{Type.FIRE, Type.FIGHT, Type.ROCK, Type.STEEL};
+                break;
+            case ("fight"):
+                weaknesses = new Type[]{Type.FLYING, Type.PSYCHIC};
+                break;
+            case ("poison"):
+                weaknesses = new Type[]{Type.GROUND, Type.PSYCHIC};
+                break;
+            case ("ground"):
+                weaknesses = new Type[]{Type.WATER, Type.GRASS, Type.ICE};
+                break;
+            case ("flying"):
+                weaknesses = new Type[]{Type.ELECTRIC, Type.ICE, Type.ROCK};
+                break;
+            case ("psychic"):
+                weaknesses = new Type[]{Type.BUG, Type.GHOST, Type.DARK};
+                break;
+            case ("bug"):
+                weaknesses = new Type[]{Type.FIRE, Type.FLYING, Type.ROCK};
+                break;
+            case ("rock"):
+                weaknesses = new Type[]{Type.WATER, Type.GRASS, Type.FIGHT, Type.GROUND, Type.STEEL};
+                break;
+            case ("ghost"):
+                weaknesses = new Type[]{Type.GHOST, Type.DARK};
+                break;
+            case ("dragon"):
+                weaknesses = new Type[]{Type.ICE, Type.DRAGON};
+                break;
+            case ("dark"):
+                weaknesses = new Type[]{Type.FIGHT, Type.BUG};
+                break;
+            case ("steel"):
+                weaknesses = new Type[]{Type.FIRE, Type.FIGHT, Type.GROUND};
+                break;
+            default:
+                weaknesses = new Type[0];
+        }
+        for (int i = 0; i < weaknesses.length; i++) {
+            if (weaknesses[i] == attackingType) {
                 return true;
             }
         }

@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:largeHeap="true">
+        android:largeHeap="true"
+        android:permission="INTERNET">
         <activity
             android:name=".MainMenuActivity"
             android:screenOrientation="portrait">

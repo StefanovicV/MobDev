@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import be.pxl.stefvrijens.pokebattle.domainclasses.Attack;
@@ -15,8 +17,8 @@ import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
 public class BattleActivity extends AppCompatActivity implements BattleVisuals.OnFragmentInteractionListener, BattleChoice.OnFragmentInteractionListener, BattleAttacks.OnAttackButtonClick {
     Pokemon playerPokemon;
     Pokemon enemyPokemon;
-    Pokemon[] playerTeam;
-    Pokemon[] enemyTeam;
+    List<Pokemon> playerTeam;
+    List<Pokemon> enemyTeam;
     int enemyPokemonNumber;
     Random rand = new Random();
 
@@ -25,11 +27,11 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
         // TODO: Get playerTeam from localStorage
-        enemyTeam = new Pokemon[6];
+        enemyTeam = new ArrayList<Pokemon>();
         enemyPokemonNumber = 0;
         generateEnemyTeam();
-        playerPokemon = playerTeam[0];
-        enemyPokemon = enemyTeam[0];
+        playerPokemon = playerTeam.get(0);
+        enemyPokemon = enemyTeam.get(0);
     }
 
     @Override
@@ -117,14 +119,27 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
             playerPokemon.setCurrentHp(0);
             // TODO: Display playerPokemon dead animation
             // TODO: Allow player to choose new pokemon (with >0 health)
-            // TODO: battleOver(false) if no pokemon left with >0 health
+
+
+            // BattleOver(false) if no pokemon left with >0 health
+            boolean hasSurvivingPokemon = false;
+            for (int i = 0; i < 6; i++) {
+                if (playerTeam.get(i).getCurrentHp() > 0) {
+                    hasSurvivingPokemon = true;
+                }
+            }
+            if (hasSurvivingPokemon == false) {
+                battleOver(false);
+            }
+
+
             // TODO: Display new playerPokemon animation
         } else {
             enemyPokemon.setCurrentHp(0);
             // TODO: Display enemyPokemon dead animation
             enemyPokemonNumber++;
             if (enemyPokemonNumber < 6) {
-                enemyPokemon = enemyTeam[enemyPokemonNumber];
+                enemyPokemon = enemyTeam.get(enemyPokemonNumber);
                 // TODO: Display new enemyPokemon animation
             } else {
                 battleOver(true);
