@@ -6,13 +6,13 @@ package hello.domainclasses;
 public class Attack
 {
     private String attack;
-    private String type;
+    private Type type;
     private int power;
     private int accuracy;
     private int cost;
 
 
-    public Attack(String attack, String type, int power, int accuracy, int cost) {
+    public Attack(String attack, Type type, int power, int accuracy, int cost) {
         this.attack = attack;
         this.type = type;
         this.power = power;
@@ -28,11 +28,11 @@ public class Attack
         this.attack = attack;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

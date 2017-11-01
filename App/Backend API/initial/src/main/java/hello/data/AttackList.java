@@ -1,6 +1,7 @@
 package hello.data;
 
 import hello.domainclasses.Attack;
+import hello.domainclasses.Type;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,40 +12,95 @@ import java.util.List;
  */
 public class AttackList {
     private static List<Attack> attacks = Arrays.asList(
-            new Attack("Earthquake", "ground", 100, 100, 100),
-            new Attack("Thunderbolt", "electric", 70, 100, 70),
-            new Attack("Flamethrower", "fire", 70, 100, 70),
-            new Attack("Ice Beam", "ice", 70, 100, 70),
-            new Attack("Megahorn", "bug", 120, 85, 80),
-            new Attack("Silver wind", "bug", 60, 100, 75),
-            new Attack("Dragonbreath", "dragon", 60, 100, 70),
-            new Attack("Meteoric Swarm", "dragon", 140, 80, 95),
-            new Attack("Thunder", "electric", 120, 70, 85),
-            new Attack("Volt Attack", "electric", 120, 100, 80),
-            new Attack("Spark", "electric", 65, 100, 70),
-            new Attack("Cross Shop", "fight", 100, 80, 75),
-            new Attack("Sky Uppercut", "fight", 85, 90, 70),
-            new Attack("Blast Burn", "fire", 150, 90, 85),
-            new Attack("Fire Blast", "fire", 120, 85, 80),
-            new Attack("Aeroblast", "flying", 100, 95, 75),
-            new Attack("Drill Peck", "flying", 80, 100, 75),
-            new Attack("Shadow Ball", "ghost", 80, 100, 80),
-            new Attack("Astonish", "ghost", 30, 100, 60),
-            new Attack("Frenzy Plant", "grass", 150, 90, 95),
-            new Attack("Razor Leaf", "grass", 55, 90, 65),
-            new Attack("Bonemerang", "ground", 50, 90, 65),
-            new Attack("Bone Club", "ground", 65, 85, 70),
-            new Attack("Doubleslap", "normal", 75, 85, 70),
-            new Attack("Strength", "normal", 80, 100, 75),
-            new Attack("Poison Fang", "poison", 50, 100, 60),
-            new Attack("Sludge Bomb", "poison", 90, 100, 80),
-            new Attack("Dream Eater", "psychic", 100, 100, 85),
-            new Attack("Luster Purge", "psychic", 65, 100, 70),
-            new Attack("Rock Blast", "rock", 55, 100, 60),
-            new Attack("Rollout", "rock", 90, 100, 75),
-            new Attack("Hydro Cannon", "water", 150, 90, 90),
-            new Attack("Octazooka", "water", 95, 100, 75),
-            new Attack("Whirlpool", "water", 55, 100, 60)
+            // Formules for cost (all rounded to nearest 5)
+            // Super Cheap = (Power * Accuracy) * 0.5
+            // Cheap = (Power * Accuracy) * 0.66
+            // Medium = Power * Accuracy
+            // Expensive = (Power * Accuracy) * 1.33
+
+            // Normal: Super Cheap
+            new Attack("Cut", Type.NORMAL, 50, 100, 25),
+            new Attack("Hyper Voice", Type.NORMAL, 90, 100, 45),
+
+            // Fire: Medium
+            new Attack("Flamethrower", Type.FIRE, 70, 100, 70),
+            new Attack("Ember", Type.FIRE, 40, 100, 40),
+            new Attack("Fire Blast", Type.FIRE, 110, 80, 90),
+
+            // Water: Medium
+            new Attack("Hydro Pump", Type.WATER, 110, 80, 90),
+            new Attack("Surf", Type.WATER, 90, 100, 90),
+            new Attack("Water Gun", Type.WATER, 40, 100, 40),
+
+            // Electric: Cheap
+            new Attack("Thunderbolt", Type.ELECTRIC, 70, 100, 45),
+            new Attack("Thunder", Type.ELECTRIC, 110, 80, 60),
+            new Attack("Thunder Shock", Type.ELECTRIC, 40, 100, 25),
+
+            // Grass: Super Cheap
+            new Attack("Power Whip", Type.GRASS, 110, 80, 45),
+            new Attack("Vine Whip", Type.GRASS, 40, 100, 20),
+            new Attack("Energy Ball", Type.GRASS, 90, 100, 45),
+
+            // Ice: Medium
+            new Attack("Ice Beam", Type.ICE, 90, 100, 90),
+            new Attack("Ice Shard", Type.ICE, 40, 100, 40),
+            new Attack("Blizzard", Type.ICE, 110, 80, 90),
+
+            // Fight: Medium
+            new Attack("Brick Break", Type.FIGHT, 75, 100, 75),
+            new Attack("Rock Smash", Type.FIGHT, 40, 100, 40),
+            new Attack("Focus Blast", Type.FIGHT, 120, 70, 80),
+
+            // Poison: Super Cheap
+            new Attack("Acid", Type.POISON, 40, 100, 20),
+            new Attack("Sludge Bomb", Type.POISON, 90, 100, 45),
+            new Attack("Gunk Shot", Type.POISON, 120, 80, 50),
+
+            // Ground: Expensive
+            new Attack("Earthquake", Type.GROUND, 100, 100, 130),
+            new Attack("Mud Shot", Type.GROUND, 55, 95, 70),
+            new Attack("Bulldoze", Type.GROUND, 75, 100, 100),
+
+            // Flying: Medium
+            new Attack("Aeroblast", Type.FLYING, 100, 95, 95),
+            new Attack("Drill Peck", Type.FLYING, 80, 100, 80),
+            new Attack("Gust", Type.FLYING, 40, 100, 40),
+
+            // Psychic: Medium
+            new Attack("Confusion", Type.PSYCHIC, 50, 100, 50),
+            new Attack("Extrasensory", Type.PSYCHIC, 80, 100, 80),
+            new Attack("Psystrike", Type.PSYCHIC, 100,100,100),
+
+            // Bug: Cheap
+            new Attack("Megahorn", Type.BUG, 120, 85, 65),
+            new Attack("X-Scissor", Type.BUG, 80, 100, 55),
+            new Attack("Struggle Bug", Type.BUG, 50, 100, 35),
+
+            // Rock: Expensive
+            new Attack("Rock Throw", Type.ROCK, 50, 90, 60),
+            new Attack("Rock Slide", Type.ROCK, 75, 90, 90),
+            new Attack("Head Smash", Type.ROCK, 150, 80, 160),
+
+            // Ghost: Medium
+            new Attack("Shadow Ball", Type.GHOST, 80, 100, 80),
+            new Attack("Astonish", Type.GHOST, 30, 100, 30),
+            new Attack("Shadow Force", Type.GHOST, 120, 80, 100),
+
+            // Dragon: Medium
+            new Attack("Dragonbreath", Type.DRAGON, 60, 100, 60),
+            new Attack("Dragon Pulse", Type.DRAGON, 85, 100, 85),
+            new Attack("Draco Meteor", Type.DRAGON, 130, 80, 105),
+
+            // Dark: Medium
+            new Attack("Pursuit", Type.DARK, 40, 100, 40),
+            new Attack("Crunch", Type.DARK, 80, 100, 80),
+            new Attack("Throat Chop", Type.DARK, 120, 80, 95),
+
+            // Steel: Cheap
+            new Attack("Bullet Punch", Type.STEEL, 40, 100, 25),
+            new Attack("Flash Cannon", Type.STEEL, 80, 100, 55),
+            new Attack("Meteor Mash", Type.STEEL, 120, 80, 65)
     );
 
 
