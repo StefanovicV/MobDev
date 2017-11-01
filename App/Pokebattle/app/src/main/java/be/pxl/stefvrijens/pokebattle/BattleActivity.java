@@ -8,15 +8,33 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ToggleButton;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import be.pxl.stefvrijens.pokebattle.domainclasses.Attack;
+import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
+
 public class BattleActivity extends AppCompatActivity implements BattleVisuals.OnFragmentInteractionListener, BattleChoice.OnFragmentInteractionListener, BattleAttacks.OnFragmentInteractionListener, BattleItems.OnFragmentInteractionListener, BattleSwitchPokemon.OnFragmentInteractionListener,
         BattleChoice.OnFightButtonClick, BattleChoice.OnUseItemButtonClick, BattleChoice.OnSwitchPokemonButtonClick {
-
+    Pokemon playerPokemon;
+    Pokemon enemyPokemon;
+    List<Pokemon> playerTeam;
+    List<Pokemon> enemyTeam;
+    int enemyPokemonNumber;
+    Random rand = new Random();
     FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
+
+        // TODO: Get playerTeam from localStorage
+        enemyTeam = new ArrayList<Pokemon>();
+        enemyPokemonNumber = 0;
+        generateEnemyTeam();
+        playerPokemon = playerTeam.get(0);
+        enemyPokemon = enemyTeam.get(0);
         manager = getFragmentManager();
     }
 
@@ -47,5 +65,119 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
         transaction.addToBackStack("");
         transaction.replace(R.id.battleChoice, new BattleSwitchPokemon());
         transaction.commit();
+    }
+
+    public void generateEnemyTeam() {
+        for (int i = 0; i < 6; i++) {
+            // TODO: Get pokemon from api, put in enemyTeam[i]
+        }
+    }
+
+    public void useAttack(Attack attack) {
+        // TODO: Disable controls
+        // TODO: wait 2 sec
+        if (playerPokemon.getSpecies().getSpeed() < enemyPokemon.getSpecies().getSpeed()) {
+            enemyMove();
+            if (playerPokemon.getCurrentHp() > 0) {
+                enemyPokemon.calculateDamage(attack, playerPokemon);
+                // TODO: Display in log: playerPokemon used attack
+                // TODO: Display playerPokemon animation
+            } else {
+                deadPokemon(true);
+            }
+            if (enemyPokemon.getCurrentHp() <= 0) {
+                deadPokemon(false);
+            }
+        } else {
+            enemyPokemon.calculateDamage(attack, playerPokemon);
+            // TODO: Display in log: playerPokemon used attack
+            // TODO: Display playerPokemon animation
+            // TODO: Wait 2 sec
+
+            if (enemyPokemon.getCurrentHp() > 0) {
+                enemyMove();
+            } else {
+                deadPokemon(false);
+            }
+            if (playerPokemon.getCurrentHp() <= 0) {
+                deadPokemon(true);
+            }
+        }
+        // TODO: wait 2 sec
+        // TODO: Enable controls
+    }
+
+    public void switchPokemon(Pokemon pokemon) {
+        // TODO: Disable controls
+        // TODO: Display in log: Come back, playerPokemon.
+        // TODO: playerPokemon leave animation
+        playerPokemon = pokemon;
+        // TODO: Display in log: Go! Pokemon!.
+        // TODO: playerPokemon entry animation
+        // TODO: Wait 2 sec
+        enemyMove();
+        // TODO: Enable controls
+    }
+
+    public void useItem(String typeOfItem) {
+        if (typeOfItem.toLowerCase().equals("potion")) {
+            playerPokemon.setCurrentHp(playerPokemon.getCurrentHp() + 20);
+        } else if (typeOfItem.toLowerCase().equals("superpotion")) {
+            playerPokemon.setCurrentHp(playerPokemon.getCurrentHp() + 50);
+        }
+        // TODO: Display in log: You used a potion/superpotion, playerPokemon healed 20/50HP.
+        // TODO: Wait 2 sec
+        enemyMove();
+    }
+
+    public void enemyMove() {
+        Attack enemyChosenAttack = enemyPokemon.getAttacks()[rand.nextInt(4)];
+        playerPokemon.calculateDamage(enemyChosenAttack, enemyPokemon);
+        // TODO: Display in log: enemyPokemon used enemyChosenAttack
+        // TODO: Display enemyPokemon animation
+        // TODO: Wait 2 sec
+    }
+
+    public void deadPokemon(boolean isPlayer) {
+        if (isPlayer) {
+            playerPokemon.setCurrentHp(0);
+            // TODO: Display playerPokemon dead animation
+            // TODO: Allow player to choose new pokemon (with >0 health)
+
+
+            // BattleOver(false) if no pokemon left with >0 health
+            boolean hasSurvivingPokemon = false;
+            for (int i = 0; i < 6; i++) {
+                if (playerTeam.get(i).getCurrentHp() > 0) {
+                    hasSurvivingPokemon = true;
+                }
+            }
+            if (hasSurvivingPokemon == false) {
+                battleOver(false);
+            }
+
+
+            // TODO: Display new playerPokemon animation
+        } else {
+            enemyPokemon.setCurrentHp(0);
+            // TODO: Display enemyPokemon dead animation
+            enemyPokemonNumber++;
+            if (enemyPokemonNumber < 6) {
+                enemyPokemon = enemyTeam.get(enemyPokemonNumber);
+                // TODO: Display new enemyPokemon animation
+            } else {
+                battleOver(true);
+            }
+        }
+    }
+
+    public void battleOver(boolean playerWins) {
+        // TODO: Navigate to PostBattle with playerWins as variable
+    }
+
+
+    @Override
+    public void buttonClickHandler(View view, int attackNumber) {
+        useAttack(playerPokemon.getAttacks()[attackNumber]);
     }
 }
