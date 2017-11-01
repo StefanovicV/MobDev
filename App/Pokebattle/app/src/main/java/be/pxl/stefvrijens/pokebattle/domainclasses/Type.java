@@ -81,7 +81,7 @@ public enum Type {
                 resistances = new Type[]{Type.PSYCHIC, Type.GHOST, Type.DARK};
                 break;
             case ("steel"):
-                resistances = new Type[]{Type.NORMAL, Type.GRASS, Type.ICE, Type.POISON, Type.FLYING, Type.PSYCHIC, Type.BUG, Type.ROCK, Type.DRAGON, Type.STEEL};
+                resistances = new Type[]{Type.NORMAL, Type.GRASS, Type.ICE, Type.POISON, Type.FLYING, Type.PSYCHIC, Type.BUG, Type.ROCK, Type.GHOST, Type.DRAGON, Type.DARK, Type.STEEL};
                 break;
             default:
                 resistances = new Type[0];

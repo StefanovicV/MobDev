@@ -6,8 +6,8 @@ package hello.domainclasses;
 public class PokemonSpecies {
     private int id;
     private String name;
-    private String type1;
-    private String type2;
+    private Type type1;
+    private Type type2;
     private int cost;
     private PokemonSpecies nextEvolution;
     private int evolutionCost;
@@ -17,7 +17,7 @@ public class PokemonSpecies {
     private int speed;
 
 
-    public PokemonSpecies(int id, String name, String type1, String type2, int cost, PokemonSpecies nextEvolution, int evolutionCost, int hp, int attack, int defense, int speed) {
+    public PokemonSpecies(int id, String name, Type type1, Type type2, int cost, PokemonSpecies nextEvolution, int evolutionCost, int hp, int attack, int defense, int speed) {
         this.id = id;
         this.name = name;
         this.type1 = type1;
@@ -47,19 +47,19 @@ public class PokemonSpecies {
         this.name = name;
     }
 
-    public String getType1() {
+    public Type getType1() {
         return type1;
     }
 
-    public void setType1(String type1) {
+    public void setType1(Type type1) {
         this.type1 = type1;
     }
 
-    public String getType2() {
+    public Type getType2() {
         return type2;
     }
 
-    public void setType2(String type2) {
+    public void setType2(Type type2) {
         this.type2 = type2;
     }
 
