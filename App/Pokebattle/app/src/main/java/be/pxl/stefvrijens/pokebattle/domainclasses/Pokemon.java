@@ -17,6 +17,17 @@ public class Pokemon {
         this.currentHp = currentHp;
     }
 
+    public int getPokemonRating() {
+        // Will usually be between 240 - 950
+        int attackSetRating = 0;
+        int rating;
+        for (int i = 0; i < attacks.length; i++) {
+            attackSetRating += attacks[i].getAttackRating();
+        }
+        rating = attackSetRating + species.getSpeed() + species.getDefense() + species.getAttack() + species.getHp();
+        return rating;
+    }
+
     public int getId() {
         return id;
     }

@@ -23,11 +23,15 @@ public class Shop extends AppCompatActivity {
         initData();
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
         listView.setAdapter(listAdapter);
+
+        // TODO:Get current inventory/coins from localstorage
     }
 
     private void initData() {
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
+
+        // TODO:GetAll from API
 
         listDataHeader.add("Items");
         listDataHeader.add("Pokémon");

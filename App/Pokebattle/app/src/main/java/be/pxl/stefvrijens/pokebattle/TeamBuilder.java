@@ -44,6 +44,8 @@ public class TeamBuilder extends AppCompatActivity implements SelectedpokemonSta
                 transaction.commit();
             }
         });
+
+        // TODO: Get PlayerData from LOCALSTORAGE
     }
 
     // YORAN 6. Deze functie (uit de interface die we net hebben gemaakt) wordt nu aangeroepen als die ook aangeroepen wordt in het fragment.
