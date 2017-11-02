@@ -16,6 +16,10 @@ public class Attack {
         this.power = power;
         this.accuracy = accuracy;
     }
+    public int getAttackRating() {
+        // Will usually be between 40 & 100
+        return (int)(this.power * (this.accuracy / 100.0));
+    }
 
     public String getName() {
         return name;

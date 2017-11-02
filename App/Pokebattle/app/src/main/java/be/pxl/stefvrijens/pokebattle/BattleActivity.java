@@ -14,7 +14,7 @@ import java.util.Random;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Attack;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
 
-public class BattleActivity extends AppCompatActivity implements BattleVisuals.OnFragmentInteractionListener, BattleChoice.OnFragmentInteractionListener, BattleAttacks.OnFragmentInteractionListener, BattleItems.OnFragmentInteractionListener, BattleSwitchPokemon.OnFragmentInteractionListener,
+public class BattleActivity extends AppCompatActivity implements BattleVisuals.OnFragmentInteractionListener, BattleChoice.OnFragmentInteractionListener, BattleAttacks.OnAttackButtonClick, BattleItems.OnFragmentInteractionListener, BattleSwitchPokemon.OnFragmentInteractionListener,
         BattleChoice.OnFightButtonClick, BattleChoice.OnUseItemButtonClick, BattleChoice.OnSwitchPokemonButtonClick {
     Pokemon playerPokemon;
     Pokemon enemyPokemon;
@@ -29,10 +29,10 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
 
+        // TODO: Get enemyTeam from previous activity
         // TODO: Get playerTeam from localStorage
         enemyTeam = new ArrayList<Pokemon>();
         enemyPokemonNumber = 0;
-        generateEnemyTeam();
         playerPokemon = playerTeam.get(0);
         enemyPokemon = enemyTeam.get(0);
         manager = getFragmentManager();
@@ -65,12 +65,6 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
         transaction.addToBackStack("");
         transaction.replace(R.id.battleChoice, new BattleSwitchPokemon());
         transaction.commit();
-    }
-
-    public void generateEnemyTeam() {
-        for (int i = 0; i < 6; i++) {
-            // TODO: Get pokemon from api, put in enemyTeam[i]
-        }
     }
 
     public void useAttack(Attack attack) {
@@ -126,6 +120,7 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
             playerPokemon.setCurrentHp(playerPokemon.getCurrentHp() + 50);
         }
         // TODO: Display in log: You used a potion/superpotion, playerPokemon healed 20/50HP.
+        // TODO: Update LOCALSTORAGE (reduce potions/superpotions by 1)
         // TODO: Wait 2 sec
         enemyMove();
     }
