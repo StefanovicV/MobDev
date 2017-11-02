@@ -46,7 +46,7 @@ public class PreBattleActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < 6; i++) {
-            Pokemon pokemon;
+            Pokemon pokemon = null;
             int thisPokemonRatingGuide = enemyTeamRatingGuide / 6;
             //TODO: Get random pokemon from API with thisPokemonRatingGuide
             team[i] = pokemon;
@@ -56,6 +56,7 @@ public class PreBattleActivity extends AppCompatActivity {
                break;
            }
         }
+        return team;
     }
 
     private void initializeButtons() {

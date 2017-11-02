@@ -10,11 +10,11 @@ public class Pokemon {
     private Attack[] attacks;
     private int currentHp;
 
-    public Pokemon(int id, PokemonSpecies species, Attack[] attacks, int currentHp) {
+    public Pokemon(int id, PokemonSpecies species, Attack[] attacks) {
         this.id = id;
         this.species = species;
         this.attacks = attacks;
-        this.currentHp = currentHp;
+        this.currentHp = species.getHp() * 4;
     }
 
     public int getPokemonRating() {
