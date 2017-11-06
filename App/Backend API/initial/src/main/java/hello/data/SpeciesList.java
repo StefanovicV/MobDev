@@ -13,21 +13,21 @@ public class SpeciesList {
     // Cost = 50 (v. cheap) - 7500 (legendary)
     // Stats: 10 = v. low, 130 = v. high
 
-    private static PokemonSpecies venusaur = new PokemonSpecies(3, "Venusaur", Type.GRASS, Type.POISON, 0, null, 0, 130, 60, 110, 50);
-    private static PokemonSpecies ivysaur = new PokemonSpecies(2, "Ivysaur", Type.GRASS, Type.POISON, 0, venusaur, 1000, 105, 50, 80, 40);
-    private static PokemonSpecies bulbasaur = new PokemonSpecies(1, "Bulbasaur", Type.GRASS, Type.POISON, 300, ivysaur, 600, 60, 40, 60, 40);
+    private static PokemonSpecies venusaur = new PokemonSpecies(3, "Venusaur", Type.GRASS, Type.POISON, 0, null, 0, 130, 60, 110, 50, "https://www.serebii.net/sunmoon/pokemon/003.png");
+    private static PokemonSpecies ivysaur = new PokemonSpecies(2, "Ivysaur", Type.GRASS, Type.POISON, 0, venusaur, 1000, 105, 50, 80, 40, "https://www.serebii.net/sunmoon/pokemon/002.png");
+    private static PokemonSpecies bulbasaur = new PokemonSpecies(1, "Bulbasaur", Type.GRASS, Type.POISON, 300, ivysaur, 600, 60, 40, 60, 40, "https://www.serebii.net/sunmoon/pokemon/001.png");
 
-    private static PokemonSpecies charizard = new PokemonSpecies(6, "Charizard", Type.FIRE, Type.FLYING, 0, null, 0, 90, 110, 60, 90);
-    private static PokemonSpecies charmeleon = new PokemonSpecies(5, "Charmeleon", Type.FIRE, null, 0, charizard, 1000, 60, 85, 50, 80);
-    private static PokemonSpecies charmander = new PokemonSpecies(4, "Charmander", Type.FIRE, null, 300, charmeleon, 600, 50, 60, 40, 50);
+    private static PokemonSpecies charizard = new PokemonSpecies(6, "Charizard", Type.FIRE, Type.FLYING, 0, null, 0, 90, 110, 60, 90, "https://www.serebii.net/sunmoon/pokemon/006.png");
+    private static PokemonSpecies charmeleon = new PokemonSpecies(5, "Charmeleon", Type.FIRE, null, 0, charizard, 1000, 60, 85, 50, 80, "https://www.serebii.net/sunmoon/pokemon/005.png");
+    private static PokemonSpecies charmander = new PokemonSpecies(4, "Charmander", Type.FIRE, null, 300, charmeleon, 600, 50, 60, 40, 50, "https://www.serebii.net/sunmoon/pokemon/004.png");
 
-    private static PokemonSpecies blastoise = new PokemonSpecies(9, "Blastoise", Type.WATER, null, 0, null, 0, 110, 85, 85, 70);
-    private static PokemonSpecies wartortle = new PokemonSpecies(8, "Wartortle", Type.WATER, null, 0, blastoise, 1000, 80, 65, 65, 65);
-    private static PokemonSpecies squirtle = new PokemonSpecies(7, "Squirtle", Type.WATER, null, 300, wartortle, 600, 55, 50, 50, 45);
+    private static PokemonSpecies blastoise = new PokemonSpecies(9, "Blastoise", Type.WATER, null, 0, null, 0, 110, 85, 85, 70, "https://www.serebii.net/sunmoon/pokemon/009.png");
+    private static PokemonSpecies wartortle = new PokemonSpecies(8, "Wartortle", Type.WATER, null, 0, blastoise, 1000, 80, 65, 65, 65, "https://www.serebii.net/sunmoon/pokemon/008.png");
+    private static PokemonSpecies squirtle = new PokemonSpecies(7, "Squirtle", Type.WATER, null, 300, wartortle, 600, 55, 50, 50, 45, "https://www.serebii.net/sunmoon/pokemon/007.png");
 
-    private static PokemonSpecies butterfree = new PokemonSpecies(12, "Butterfree", Type.BUG, Type.FLYING, 0, null, 0, 60, 30, 90, 70);
-    private static PokemonSpecies metapod = new PokemonSpecies(11, "Metapod", Type.BUG, null, 0, butterfree, 200, 60, 15, 95, 30);
-    private static PokemonSpecies caterpie = new PokemonSpecies(10, "Caterpie", Type.BUG, null, 50, metapod, 75, 30, 15, 25, 30);
+    private static PokemonSpecies butterfree = new PokemonSpecies(12, "Butterfree", Type.BUG, Type.FLYING, 0, null, 0, 60, 30, 90, 70, "https://www.serebii.net/sunmoon/pokemon/012.png");
+    private static PokemonSpecies metapod = new PokemonSpecies(11, "Metapod", Type.BUG, null, 0, butterfree, 200, 60, 15, 95, 30, "https://www.serebii.net/sunmoon/pokemon/011.png");
+    private static PokemonSpecies caterpie = new PokemonSpecies(10, "Caterpie", Type.BUG, null, 50, metapod, 75, 30, 15, 25, 30, "https://www.serebii.net/sunmoon/pokemon/010.png");
 
     private static PokemonSpecies beedrill = new PokemonSpecies(15, "Beedrill", Type.BUG, Type.POISON, 0, null, 0, 60, 90, 30, 70);
     private static PokemonSpecies kakuna = new PokemonSpecies(14, "Kakuna", Type.BUG, Type.POISON, 0, beedrill, 200, 60, 15, 95, 30);
