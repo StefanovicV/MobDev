@@ -83,7 +83,7 @@ public class SpeciesList {
 
 
 
-    private static List<PokemonSpecies> allSpecies = Arrays.asList(venusaur, ivysaur, bulbasaur);
+    private static List<PokemonSpecies> allSpecies = Arrays.asList(bulbasaur, charmander, squirtle, caterpie, weedle, pidgey, pichu, zubat, oddish, poliwag, abra, machop, geodude, gastly, dratini, articuno, zapdos, moltres, mewtwo);
     private static List<PokemonSpecies> buyableSpecies = Arrays.asList(bulbasaur);
 
     public static PokemonSpecies[] getAllSpecies() {
