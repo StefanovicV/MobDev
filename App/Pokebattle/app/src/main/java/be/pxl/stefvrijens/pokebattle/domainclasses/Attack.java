@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class Attack implements Serializable{
+    static final long serialVersionUID = 45L;
     private String name;
     private Type type;
     private int power;

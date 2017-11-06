@@ -19,7 +19,7 @@ public class MainMenuActivity extends AppCompatActivity {
     Button shopButton;
     Button fightButton;
     Button myTeamButton;
-//    Button logOutButton;
+    Button logOutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class MainMenuActivity extends AppCompatActivity {
         shopButton = (Button) findViewById(R.id.shopButton);
         fightButton = (Button) findViewById(R.id.fightButton);
         myTeamButton = (Button) findViewById(R.id.myTeamButton);
-//        logOutButton = (Button) findViewById(R.id.logOutButton);
+        logOutButton = (Button) findViewById(R.id.logOutButton);
 
         shopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +83,21 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(in);
             }
         });
-//        logOutButton.setOnClickListener(new View.OnClickListener() {
-//
-//        });
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetPlayerData();
+            }
+        });
+    }
+
+    private void resetPlayerData() {
+        deleteFile("PlayerData");
+        try {
+            System.out.println("Creating PlayerData");
+            InternalStorage.writeObject(this, "PlayerData", Player.generateInitialPlayerData());
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 }
