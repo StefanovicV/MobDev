@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ToggleButton;
 
+import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
 
 public class PreBattleActivity extends AppCompatActivity {
@@ -17,14 +18,16 @@ public class PreBattleActivity extends AppCompatActivity {
     ToggleButton mediumToggleButton;
     ToggleButton hardToggleButton;
 
-    Pokemon[] playerTeam;
+    Pokemon[] enemyTeam;
+
+    Player playerData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_battle);
         initializeButtons();
-        // TODO: Get Player.Team from LOCALSTORAGE
+        // TODO: Get Player from LOCALSTORAGE
     }
 
     private Pokemon[] generateEnemyTeam() {
@@ -33,9 +36,7 @@ public class PreBattleActivity extends AppCompatActivity {
         int enemyTeamRatingGuide;
         Pokemon[] team = new Pokemon[6];
 
-        for (int i = 0; i < playerTeam.length; i++) {
-            playerTeamRating += playerTeam[i].getPokemonRating();
-        }
+        playerTeamRating = playerData.getTeamRating();
 
         if (easyToggleButton.isChecked()) {
             enemyTeamRatingGuide = playerTeamRating - 200;
@@ -46,7 +47,7 @@ public class PreBattleActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < 6; i++) {
-            Pokemon pokemon;
+            Pokemon pokemon = null;
             int thisPokemonRatingGuide = enemyTeamRatingGuide / 6;
             //TODO: Get random pokemon from API with thisPokemonRatingGuide
             team[i] = pokemon;
@@ -56,6 +57,7 @@ public class PreBattleActivity extends AppCompatActivity {
                break;
            }
         }
+        return team;
     }
 
     private void initializeButtons() {

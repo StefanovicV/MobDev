@@ -49,6 +49,12 @@ public class SelectedpokemonAttacks extends Fragment {
                              Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.fragment_selectedpokemon_attacks, container, false);
+        // Inflate the layout for this fragment
+        initializeButtons(view);
+        return view;
+    }
+
+    private void initializeButtons(View view) {
         attackEditButton1 = (Button) view.findViewById(R.id.attack1EditButton);
         attackEditButton2 = (Button) view.findViewById(R.id.attack2EditButton);
         attackEditButton3 = (Button) view.findViewById(R.id.attack3EditButton);
@@ -78,12 +84,6 @@ public class SelectedpokemonAttacks extends Fragment {
                 editButtonClick(v, 4);
             }
         });
-        // Inflate the layout for this fragment
-        return view;
-    }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
     }
 	
     // YORAN: 4. Dit is de functie die aangeroepen wordt door de knopkes binnen het fragment, de knopkes aan deze functie koppelen heb ik hierboven gedaan (setOnClickListener), verdere uitleg in de TeamBuilder class
