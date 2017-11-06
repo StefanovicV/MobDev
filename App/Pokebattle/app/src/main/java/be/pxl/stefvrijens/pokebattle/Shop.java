@@ -1,4 +1,4 @@
-package be.pxl.stefvrijens.pokebattle;
+﻿package be.pxl.stefvrijens.pokebattle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
