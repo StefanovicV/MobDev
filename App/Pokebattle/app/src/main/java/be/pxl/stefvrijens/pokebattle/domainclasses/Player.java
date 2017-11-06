@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class Player implements Serializable {
+    static final long serialVersionUID = 44L;
     private Pokemon[] team;
     private int ownedCoins;
     private int ownedPotions;

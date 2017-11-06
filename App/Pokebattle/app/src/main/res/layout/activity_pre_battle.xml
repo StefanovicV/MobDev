@@ -61,42 +61,42 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/pokemon1"
+                    android:id="@+id/pokemon1Image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageView
-                    android:id="@+id/pokemon2"
+                    android:id="@+id/pokemon2Image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageView
-                    android:id="@+id/pokemon3"
+                    android:id="@+id/pokemon3Image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageView
-                    android:id="@+id/pokemon4"
+                    android:id="@+id/pokemon4Image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageView
-                    android:id="@+id/pokemon5"
+                    android:id="@+id/pokemon5Image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/pokeballimageresized" />
 
                 <ImageView
-                    android:id="@+id/pokemon6"
+                    android:id="@+id/pokemon6Image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -104,7 +104,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/teamRating"
+                android:id="@+id/teamRatingPreBattle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

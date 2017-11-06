@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class Pokemon implements Serializable{
+    static final long serialVersionUID = 43L;
     private int id;
     private PokemonSpecies species;
     private Attack[] attacks;

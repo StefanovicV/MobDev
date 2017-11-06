@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
@@ -33,6 +34,8 @@ public class PreBattleActivity extends AppCompatActivity {
         } catch (Exception ex) {
             System.err.println("Error reading playerData: " + ex.getMessage());
         }
+        TextView tv = (TextView)findViewById(R.id.teamRatingPreBattle);
+        tv.setText("Current Teamrating: " + playerData.getTeamRating());
         // TODO: Databind playerData.team
     }
 

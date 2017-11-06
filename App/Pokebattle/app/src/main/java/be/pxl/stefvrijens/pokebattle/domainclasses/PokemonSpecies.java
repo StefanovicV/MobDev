@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class PokemonSpecies implements Serializable {
+    static final long serialVersionUID = 42L;
     private int id;
     private String name;
     private Type type1;
@@ -18,8 +19,9 @@ public class PokemonSpecies implements Serializable {
     private int attack;
     private int defense;
     private int speed;
+    private String imageUrl;
 
-    public PokemonSpecies(int id, String name, Type type1, Type type2, int cost, PokemonSpecies nextEvolution, int evolutionCost, int hp, int attack, int defense, int speed) {
+    public PokemonSpecies(int id, String name, Type type1, Type type2, int cost, PokemonSpecies nextEvolution, int evolutionCost, int hp, int attack, int defense, int speed, String imageUrl) {
         this.id = id;
         this.name = name;
         this.type1 = type1;
@@ -31,10 +33,11 @@ public class PokemonSpecies implements Serializable {
         this.attack = attack;
         this.defense = defense;
         this.speed = speed;
+        this.imageUrl = imageUrl;
     }
 
     public static PokemonSpecies generateTestPokemonSpecies() {
-        return new PokemonSpecies(1, "Testachu", Type.ELECTRIC, null, 10, null, 0, 100, 100, 100, 100);
+        return new PokemonSpecies(999, "Missingno", Type.NORMAL, null, 10, null, 0, 100, 100, 100, 100, "https://static.giantbomb.com/uploads/square_small/9/95666/2775264-sprite_missingno.gif");
     }
 
     public int getId() {
