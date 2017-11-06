@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ToggleButton;
 
+import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
+
 // YORAN 5. De interface die we net hebben aangemaakt hier geïmplementeerd
-public class TeamBuilder extends AppCompatActivity implements SelectedpokemonStats.OnFragmentInteractionListener, SelectedpokemonAttacks.OnEditButtonClick {
+public class TeamBuilder extends AppCompatActivity implements SelectedpokemonAttacks.OnEditButtonClick {
     ToggleButton statsToggleButton;
     ToggleButton attacksToggleButton;
     FragmentManager manager;
+    Player playerData;
 
 
     @Override
@@ -21,7 +24,11 @@ public class TeamBuilder extends AppCompatActivity implements SelectedpokemonSta
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_builder);
         manager = getFragmentManager();
+        initializeButtons();
+        // TODO: Get PlayerData from LOCALSTORAGE
+    }
 
+    private void initializeButtons() {
         statsToggleButton = (ToggleButton)findViewById(R.id.statsToggle);
         attacksToggleButton = (ToggleButton)findViewById(R.id.attacksToggle);
 
@@ -44,8 +51,6 @@ public class TeamBuilder extends AppCompatActivity implements SelectedpokemonSta
                 transaction.commit();
             }
         });
-
-        // TODO: Get PlayerData from LOCALSTORAGE
     }
 
     // YORAN 6. Deze functie (uit de interface die we net hebben gemaakt) wordt nu aangeroepen als die ook aangeroepen wordt in het fragment.
@@ -55,10 +60,5 @@ public class TeamBuilder extends AppCompatActivity implements SelectedpokemonSta
         transaction.addToBackStack("");
         transaction.replace(R.id.teamBuilderFragment, new AttackDetails());
         transaction.commit();
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-        //public void onFragmentInteraction(Uri uri);
     }
 }

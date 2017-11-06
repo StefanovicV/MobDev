@@ -21,6 +21,14 @@ public class Player {
         this.ownedPokemon = ownedPokemon;
     }
 
+    public int getTeamRating() {
+        int rating = 0;
+        for (int i = 0; i < team.length; i++) {
+            rating += team[i].getPokemonRating();
+        }
+        return rating;
+    }
+
     public Pokemon[] getOwnedPokemon() {
         return ownedPokemon;
     }
