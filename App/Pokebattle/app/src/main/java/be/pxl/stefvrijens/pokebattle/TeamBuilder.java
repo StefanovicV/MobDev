@@ -10,13 +10,16 @@ import android.widget.Button;
 import android.widget.ToggleButton;
 
 import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
+import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
 
 // YORAN 5. De interface die we net hebben aangemaakt hier geïmplementeerd
 public class TeamBuilder extends AppCompatActivity implements SelectedpokemonAttacks.OnEditButtonClick {
     ToggleButton statsToggleButton;
     ToggleButton attacksToggleButton;
+    Button evolveButton;
     FragmentManager manager;
     Player playerData;
+    Pokemon selectedPokemon;
 
 
     @Override
@@ -28,9 +31,19 @@ public class TeamBuilder extends AppCompatActivity implements SelectedpokemonAtt
         // TODO: Get PlayerData from LOCALSTORAGE
     }
 
+    private void evolveSelectedPokemon() {
+        if (selectedPokemon.getSpecies().getEvolutionCost() > 0) {
+            playerData.setOwnedCoins(playerData.getOwnedCoins() - selectedPokemon.getSpecies().getEvolutionCost());
+            selectedPokemon.setSpecies(selectedPokemon.getSpecies().getNextEvolution());
+            playerData.updatePokemon(selectedPokemon);
+            // TODO: LOCALSTORAGE write playerData
+        }
+    }
+
     private void initializeButtons() {
         statsToggleButton = (ToggleButton)findViewById(R.id.statsToggle);
         attacksToggleButton = (ToggleButton)findViewById(R.id.attacksToggle);
+        evolveButton = (Button)findViewById(R.id.evolveButton);
 
         statsToggleButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -39,6 +52,13 @@ public class TeamBuilder extends AppCompatActivity implements SelectedpokemonAtt
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.teamBuilderFragment, new SelectedpokemonStats());
                 transaction.commit();
+            }
+        });
+
+        evolveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                evolveSelectedPokemon();
             }
         });
 

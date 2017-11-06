@@ -21,6 +21,15 @@ public class Player {
         this.ownedPokemon = ownedPokemon;
     }
 
+    public void updatePokemon(Pokemon pokemon) {
+        for (int i = 0; i < ownedPokemon.length; i++) {
+            if (ownedPokemon[i].getId() == pokemon.getId()) {
+                ownedPokemon[i] = pokemon;
+                break;
+            }
+        }
+    }
+
     public int getTeamRating() {
         int rating = 0;
         for (int i = 0; i < team.length; i++) {

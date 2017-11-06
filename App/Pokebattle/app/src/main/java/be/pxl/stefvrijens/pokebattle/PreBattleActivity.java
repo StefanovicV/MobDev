@@ -27,7 +27,8 @@ public class PreBattleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_battle);
         initializeButtons();
-        // TODO: Get Player from LOCALSTORAGE
+        // TODO: Get playerData from LOCALSTORAGE
+        // TODO: Databind playerData.team
     }
 
     private Pokemon[] generateEnemyTeam() {
