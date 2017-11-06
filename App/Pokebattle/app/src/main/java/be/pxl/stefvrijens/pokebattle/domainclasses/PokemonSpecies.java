@@ -1,10 +1,12 @@
 package be.pxl.stefvrijens.pokebattle.domainclasses;
 
+import java.io.Serializable;
+
 /**
  * Created by stefv on 25-Oct-17.
  */
 
-public class PokemonSpecies {
+public class PokemonSpecies implements Serializable {
     private int id;
     private String name;
     private Type type1;
@@ -29,6 +31,10 @@ public class PokemonSpecies {
         this.attack = attack;
         this.defense = defense;
         this.speed = speed;
+    }
+
+    public static PokemonSpecies generateTestPokemonSpecies() {
+        return new PokemonSpecies(1, "Testachu", Type.ELECTRIC, null, 10, null, 0, 100, 100, 100, 100);
     }
 
     public int getId() {

@@ -38,11 +38,11 @@ public class Shop extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
-        listView = (ExpandableListView)findViewById(R.id.Shop);
-        requestQueue = Volley.newRequestQueue(this);
-        initData();
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
-        listView.setAdapter(listAdapter);
+//        listView = (ExpandableListView)findViewById(R.id.Shop);
+//        requestQueue = Volley.newRequestQueue(this);
+//        initData();
+//        listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
+//        listView.setAdapter(listAdapter);
 
         // TODO:Get current inventory/coins from localstorage
     }
@@ -103,7 +103,7 @@ public class Shop extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("VOLLEY", "ERROR");
+                        Log.e("VOLLEY", error.getMessage());
                     }
                 }
 
@@ -111,7 +111,7 @@ public class Shop extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
 
         listHash.put(listDataHeader.get(0), items);
-        listHash.put(listDataHeader.get(1), pokemon);
+        listHash.put(listDataHeader.get(1), pokemons);
         listHash.put(listDataHeader.get(2), attacks);
     }
 }

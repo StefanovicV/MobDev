@@ -1,10 +1,12 @@
 package be.pxl.stefvrijens.pokebattle.domainclasses;
 
+import java.io.Serializable;
+
 /**
  * Created by stefv on 25-Oct-17.
  */
 
-public class Attack {
+public class Attack implements Serializable{
     private String name;
     private Type type;
     private int power;
@@ -18,6 +20,11 @@ public class Attack {
         this.accuracy = accuracy;
         this.cost = cost;
     }
+
+    public static Attack generateTestAttack(int variable) {
+        return new Attack("TestAttack " + variable, Type.NORMAL, 10 * variable, 100, variable * 20);
+    }
+
     public int getAttackRating() {
         // Will usually be between 40 & 100
         return (int)(this.power * (this.accuracy / 100.0));

@@ -9,6 +9,7 @@ import android.widget.ToggleButton;
 
 import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
+import be.pxl.stefvrijens.pokebattle.services.InternalStorage;
 
 public class PreBattleActivity extends AppCompatActivity {
     Button fightButton;
@@ -27,7 +28,11 @@ public class PreBattleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_battle);
         initializeButtons();
-        // TODO: Get playerData from LOCALSTORAGE
+        try {
+            playerData = (Player) InternalStorage.readObject(this, "PlayerData");
+        } catch (Exception ex) {
+            System.err.println("Error reading playerData: " + ex.getMessage());
+        }
         // TODO: Databind playerData.team
     }
 
