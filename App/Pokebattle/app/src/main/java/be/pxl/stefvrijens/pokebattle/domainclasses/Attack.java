@@ -9,12 +9,14 @@ public class Attack {
     private Type type;
     private int power;
     private int accuracy;
+    private int cost;
 
-    public Attack(String name, Type type, int power, int accuracy) {
+    public Attack(String name, Type type, int power, int accuracy, int cost) {
         this.name = name;
         this.type = type;
         this.power = power;
         this.accuracy = accuracy;
+        this.cost = cost;
     }
     public int getAttackRating() {
         // Will usually be between 40 & 100
@@ -51,5 +53,13 @@ public class Attack {
 
     public void setAccuracy(int accuracy) {
         this.accuracy = accuracy;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 }
