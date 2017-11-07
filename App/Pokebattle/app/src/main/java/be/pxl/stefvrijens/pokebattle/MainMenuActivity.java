@@ -30,18 +30,17 @@ public class MainMenuActivity extends AppCompatActivity {
         if (!playerDataExists()) {
             try {
                 System.out.println("Creating PlayerData");
+
+//            //TODO: Get Pikachu and tackle from API
+//                PokemonSpecies firstSpecies = null;                   (insert pikachu here)
+//                Attack[] firstSpeciesAttack = new Attack[1];          (insert tackle here)
+//                Pokemon[] firstPokemon = new Pokemon[]{new Pokemon(1, firstSpecies, firstSpeciesAttack)};
+    //            Player player = new Player(firstPokemon, 50, 0, 0, firstSpeciesAttack, firstPokemon);
                 InternalStorage.writeObject(this, "PlayerData", Player.generateInitialPlayerData());
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
-
-//            //TODO: Get Pikachu and tackle from API
-//            PokemonSpecies firstSpecies = null;
-//            Attack[] firstSpeciesAttack = new Attack[1];
-//            Pokemon[] firstPokemon = new Pokemon[]{new Pokemon(1, firstSpecies, firstSpeciesAttack)};
-//            Player player = new Player(firstPokemon, 50, 0, 0, firstSpeciesAttack, firstPokemon);
         }
-        
     }
     
     private boolean playerDataExists() {

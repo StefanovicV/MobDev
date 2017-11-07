@@ -37,7 +37,15 @@ public class PokemonSpecies implements Serializable {
     }
 
     public static PokemonSpecies generateTestPokemonSpecies() {
-        return new PokemonSpecies(999, "Missingno", Type.NORMAL, null, 10, null, 0, 100, 100, 100, 100, "https://static.giantbomb.com/uploads/square_small/9/95666/2775264-sprite_missingno.gif");
+        return new PokemonSpecies(999, "Missingno", Type.NORMAL, null, 10, null, 0, 100, 100, 100, 100, "https://pro-rankedboost.netdna-ssl.com/wp-content/uploads/2016/08/Togepi-Pokemon-Go.png");
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {

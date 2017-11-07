@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import be.pxl.stefvrijens.pokebattle.domainclasses.Attack;
+import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
 
 
 public class BattleAttacks extends Fragment {
@@ -92,6 +93,13 @@ public class BattleAttacks extends Fragment {
 
     public interface OnAttackButtonClick {
         void buttonClickHandler(View view, int attackNumber);
+    }
+
+    public void updateButtonDatabinding(Pokemon playerPokemon) {
+        Attack[] attacks = playerPokemon.getAttacks();
+        for (int i = 0; i < 4; i++) {
+            buttons[i].setText(attacks[i].getName());
+        }
     }
 
 }
