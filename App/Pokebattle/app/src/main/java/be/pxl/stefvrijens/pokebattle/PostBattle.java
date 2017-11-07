@@ -5,14 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
+import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
+import be.pxl.stefvrijens.pokebattle.services.InternalStorage;
 
 public class PostBattle extends AppCompatActivity {
     boolean playerWon;
     Button backToMenuButton;
     int coinsWon;
     Player playerData;
+    Pokemon[] enemyTeam;
+    int enemyRating = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +25,44 @@ public class PostBattle extends AppCompatActivity {
         setContentView(R.layout.activity_post_battle);
         initializeButton();
 
-        //TODO: get playerWon variable from previous activity
+        playerWon = getIntent().getBooleanExtra("PlayerWon", true);
         if (playerWon) {
+            try {
+                playerData = (Player)InternalStorage.readObject(this, "PlayerData");
+            } catch (Exception ex) {
+                System.out.println("Error reading playerData: " + ex.getMessage());
+            }
+            enemyTeam = (Pokemon[])getIntent().getSerializableExtra("EnemyTeam");
             coinsWon = calculateWonCoins();
+            playerData.setOwnedCoins(playerData.getOwnedCoins() + coinsWon);
+
+            try {
+                InternalStorage.writeObject(this, "PlayerData", playerData);
+            } catch (Exception ex) {
+                System.out.println("Error writing playerData: " + ex.getMessage());
+            }
         }
-        // TODO: LOCALSTORAGE get playerData
-        playerData.setOwnedCoins(playerData.getOwnedCoins() + coinsWon);
-        // TODO: LOCALSTORAGE update playerData
+
+        updateDataBindings();
 
         backToMenuButton.setEnabled(true);
+    }
+
+    private void updateDataBindings() {
+        TextView title = (TextView) findViewById(R.id.youWonTitle);
+        TextView yourRating = (TextView) findViewById(R.id.teamRatingValue);
+        TextView opponentRating = (TextView) findViewById(R.id.opponentRatingValue);
+        TextView coinsWonText = (TextView) findViewById(R.id.coinsWonText);
+
+        yourRating.setText("" + playerData.getTeamRating());
+        opponentRating.setText("" + enemyRating);
+        if (playerWon) {
+            title.setText("You won!");
+            coinsWonText.setText("You won " + coinsWon + " coins!");
+        } else {
+            title.setText("You lost...");
+            coinsWonText.setText("Better luck next time.");
+        }
     }
 
     private void initializeButton() {
@@ -44,14 +78,11 @@ public class PostBattle extends AppCompatActivity {
     }
 
     private int calculateWonCoins() {
-        int playerTeamRating;
-        int opponentTeamRating = 0;
-        int coins;
+        int playerTeamRating = playerData.getTeamRating();
+        for (int i = 0; i < enemyTeam.length; i++) {
+            enemyRating += enemyTeam[i].getPokemonRating();
+        }
 
-        playerTeamRating = playerData.getTeamRating();
-
-        //TODO: Get opponentTeamRating from previous activity
-
-        return coins = (int)(40 + (10 * (1 + (opponentTeamRating - playerTeamRating) / 100.0)));
+        return (int)(40 + (10 * (1 + (enemyRating - playerTeamRating) / 100.0)));
     }
 }

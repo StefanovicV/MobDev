@@ -5,7 +5,7 @@ package hello.domainclasses;
  */
 public class Attack
 {
-    private String attack;
+    private String name;
     private Type type;
     private int power;
     private int accuracy;
@@ -13,15 +13,15 @@ public class Attack
 
 
     public Attack(String attack, Type type, int power, int accuracy, int cost) {
-        this.attack = attack;
+        this.name = attack;
         this.type = type;
         this.power = power;
         this.accuracy = accuracy;
         this.cost = cost;
     }
 
-    public String getAttack() {
-        return attack;
+    public String getName() {
+        return name;
     }
 
     public int getRating() {
@@ -29,7 +29,7 @@ public class Attack
     }
 
     public void setAttack(String attack) {
-        this.attack = attack;
+        this.name = attack;
     }
 
     public Type getType() {

@@ -14,6 +14,17 @@ public class Pokemon {
         this.attacks = attacks;
     }
 
+    public int getRating() {
+        int rating = 0;
+        for (int i = 0; i < attacks.length; i++) {
+            if (attacks[i] != null) {
+                rating += attacks[i].getRating();
+            }
+        }
+        rating += species.getRating();
+        return rating;
+    }
+
     public int getId() {
         return id;
     }

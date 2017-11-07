@@ -33,10 +33,15 @@ public class Pokemon implements Serializable {
         int attackSetRating = 0;
         int rating;
         for (int i = 0; i < attacks.length; i++) {
-            attackSetRating += attacks[i].getAttackRating();
+            if (attacks[i] != null) {
+                attackSetRating += attacks[i].getAttackRating();
+            }
         }
         rating = attackSetRating + species.getSpeed() + species.getDefense() + species.getAttack() + species.getHp();
         return rating;
+    }
+    public void resetCurrentHp() {
+        currentHp = 4 * species.getHp();
     }
 
     public int getId() {
@@ -72,7 +77,7 @@ public class Pokemon implements Serializable {
     }
 
     public void calculateDamage(Attack incomingAttack, Pokemon attackingPokemon) {
-        double damage = incomingAttack.getPower() / 10;
+        double damage = incomingAttack.getPower() / 2;
         if (incomingAttack.getType().equals(attackingPokemon.getSpecies().getType1()) || (attackingPokemon.getSpecies() != null && incomingAttack.getType().equals(attackingPokemon.getSpecies().getType2()))) {
             damage = 1.5 * damage;
         }
