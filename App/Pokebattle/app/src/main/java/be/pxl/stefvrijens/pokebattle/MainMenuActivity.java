@@ -13,27 +13,26 @@ import be.pxl.stefvrijens.pokebattle.domainclasses.Attack;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
 import be.pxl.stefvrijens.pokebattle.domainclasses.PokemonSpecies;
+import be.pxl.stefvrijens.pokebattle.services.InternalStorage;
 
 public class MainMenuActivity extends AppCompatActivity {
     Button shopButton;
     Button fightButton;
     Button myTeamButton;
-//    Button logOutButton;
+    Button logOutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         initializeButtons();
-        System.out.println("TEST");
 
         if (!playerDataExists()) {
             try {
-                FileOutputStream fos = openFileOutput("TESTFILE", Context.MODE_PRIVATE);
-                fos.write("test".getBytes());
-                fos.close();
+                System.out.println("Creating PlayerData");
+                InternalStorage.writeObject(this, "PlayerData", Player.generateInitialPlayerData());
             } catch (Exception ex) {
-
+                System.err.println(ex.getMessage());
             }
 
 //            //TODO: Get Pikachu and tackle from API
@@ -41,7 +40,6 @@ public class MainMenuActivity extends AppCompatActivity {
 //            Attack[] firstSpeciesAttack = new Attack[1];
 //            Pokemon[] firstPokemon = new Pokemon[]{new Pokemon(1, firstSpecies, firstSpeciesAttack)};
 //            Player player = new Player(firstPokemon, 50, 0, 0, firstSpeciesAttack, firstPokemon);
-//            // TODO: Write this to playerData file
         }
         
     }
@@ -50,7 +48,8 @@ public class MainMenuActivity extends AppCompatActivity {
         String[] files = fileList();
         for (int i = 0; i < files.length; i++) {
             System.out.println("File " + i + ": " + files[i]);
-            if (files[i].equals("playerData")) {
+            if (files[i].equals("PlayerData")) {
+                System.out.println("PlayerData exists");
                 return true;
             }
         }
@@ -61,7 +60,7 @@ public class MainMenuActivity extends AppCompatActivity {
         shopButton = (Button) findViewById(R.id.shopButton);
         fightButton = (Button) findViewById(R.id.fightButton);
         myTeamButton = (Button) findViewById(R.id.myTeamButton);
-//        logOutButton = (Button) findViewById(R.id.logOutButton);
+        logOutButton = (Button) findViewById(R.id.logOutButton);
 
         shopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,8 +83,21 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(in);
             }
         });
-//        logOutButton.setOnClickListener(new View.OnClickListener() {
-//
-//        });
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetPlayerData();
+            }
+        });
+    }
+
+    private void resetPlayerData() {
+        deleteFile("PlayerData");
+        try {
+            System.out.println("Creating PlayerData");
+            InternalStorage.writeObject(this, "PlayerData", Player.generateInitialPlayerData());
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 }

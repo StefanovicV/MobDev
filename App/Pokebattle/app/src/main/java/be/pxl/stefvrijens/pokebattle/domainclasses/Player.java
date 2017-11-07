@@ -1,10 +1,13 @@
 package be.pxl.stefvrijens.pokebattle.domainclasses;
 
+import java.io.Serializable;
+
 /**
  * Created by stefv on 02-Nov-17.
  */
 
-public class Player {
+public class Player implements Serializable {
+    static final long serialVersionUID = 44L;
     private Pokemon[] team;
     private int ownedCoins;
     private int ownedPotions;
@@ -19,6 +22,21 @@ public class Player {
         this.ownedSuperPotions = ownedSuperPotions;
         this.ownedAttacks = ownedAttacks;
         this.ownedPokemon = ownedPokemon;
+    }
+
+    public static Player generateInitialPlayerData() {
+        Pokemon[] initialTeam = new Pokemon[] {Pokemon.generateTestPokemon()};
+        Attack[] initialAttacks = new Attack[] {Attack.generateTestAttack(1)};
+        return new Player(initialTeam, 50, 0, 0, initialAttacks, initialTeam);
+    }
+
+    public void updatePokemon(Pokemon pokemon) {
+        for (int i = 0; i < ownedPokemon.length; i++) {
+            if (ownedPokemon[i].getId() == pokemon.getId()) {
+                ownedPokemon[i] = pokemon;
+                break;
+            }
+        }
     }
 
     public int getTeamRating() {

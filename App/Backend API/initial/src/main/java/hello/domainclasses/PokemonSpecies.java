@@ -15,9 +15,10 @@ public class PokemonSpecies {
     private int attack;
     private int defense;
     private int speed;
+    private String imageUrl;
 
 
-    public PokemonSpecies(int id, String name, Type type1, Type type2, int cost, PokemonSpecies nextEvolution, int evolutionCost, int hp, int attack, int defense, int speed) {
+    public PokemonSpecies(int id, String name, Type type1, Type type2, int cost, PokemonSpecies nextEvolution, int evolutionCost, int hp, int attack, int defense, int speed, String imageUrl) {
         this.id = id;
         this.name = name;
         this.type1 = type1;
@@ -29,6 +30,38 @@ public class PokemonSpecies {
         this.attack = attack;
         this.defense = defense;
         this.speed = speed;
+        this.imageUrl = imageUrl;
+    }
+
+    public PokemonSpecies(int id, String name, Type type1, Type type2, int cost, PokemonSpecies nextEvolution, int evolutionCost, int hp, int attack, int defense, int speed) {
+        String url = "https://www.serebii.net/sunmoon/pokemon/";
+        if (id < 10) {
+            url = url + "00" + id + ".png";
+        } else if (id < 100) {
+            url = url + "0" + id + ".png";
+        } else {
+            url = url + id + ".png";
+        }
+        this.id = id;
+        this.name = name;
+        this.type1 = type1;
+        this.type2 = type2;
+        this.cost = cost;
+        this.nextEvolution = nextEvolution;
+        this.evolutionCost = evolutionCost;
+        this.hp = hp;
+        this.attack = attack;
+        this.defense = defense;
+        this.speed = speed;
+        this.imageUrl = url;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {

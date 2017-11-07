@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
+import be.pxl.stefvrijens.pokebattle.services.InternalStorage;
 
 public class PreBattleActivity extends AppCompatActivity {
     Button fightButton;
@@ -27,7 +29,14 @@ public class PreBattleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_battle);
         initializeButtons();
-        // TODO: Get Player from LOCALSTORAGE
+        try {
+            playerData = (Player) InternalStorage.readObject(this, "PlayerData");
+        } catch (Exception ex) {
+            System.err.println("Error reading playerData: " + ex.getMessage());
+        }
+        TextView tv = (TextView)findViewById(R.id.teamRatingPreBattle);
+        tv.setText("Current Teamrating: " + playerData.getTeamRating());
+        // TODO: Databind playerData.team
     }
 
     private Pokemon[] generateEnemyTeam() {

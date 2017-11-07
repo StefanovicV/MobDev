@@ -1,10 +1,12 @@
 package be.pxl.stefvrijens.pokebattle.domainclasses;
 
+import java.io.Serializable;
+
 /**
  * Created by stefv on 25-Oct-17.
  */
 
-public enum Type {
+public enum Type implements Serializable {
     NORMAL("normal"),
     FIRE("fire"),
     WATER("water"),
