@@ -55,10 +55,10 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
     public void doFightButtonClick(View view) {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack("");
-        transaction.replace(R.id.battleChoice, new BattleAttacks());
-        BattleAttacks bat = (BattleAttacks) manager.findFragmentById(R.id.battleChoice);
-        bat.updateButtonDatabinding(playerPokemon);
+        transaction.add(R.id.battleChoice, new BattleAttacks(), "battleAttacks");
         transaction.commit();
+        BattleAttacks bat = (BattleAttacks) manager.findFragmentByTag("battleAttacks");
+        bat.updateButtonDatabinding(playerPokemon);
     }
 
     @Override

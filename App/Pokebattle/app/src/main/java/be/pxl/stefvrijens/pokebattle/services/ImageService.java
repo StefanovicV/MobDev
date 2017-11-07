@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -40,21 +41,21 @@ public class ImageService {
 
     private Bitmap result;
 
-    public Bitmap getImageFromWeb(String url, Context context) {
+    public void getImageFromWeb(String url, Context context, final ImageView imageView) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
             @Override
             public void onResponse(Bitmap response) {
-                result = response;
+                result = Bitmap.createScaledBitmap(response, 100, 100, false);
+                imageView.setImageBitmap(result);
             }
-        }, 100, 100, null, null, new Response.ErrorListener() {
+        }, 0,0, null, null, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.err.println("Imageservice error: " + error.getMessage());
             }
         });
         requestQueue.add(imageRequest);
-        return result;
     }
 
 }

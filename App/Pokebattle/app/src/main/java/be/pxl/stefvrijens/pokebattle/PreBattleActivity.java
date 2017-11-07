@@ -85,8 +85,7 @@ public class PreBattleActivity extends AppCompatActivity {
         Pokemon[] playerTeam = playerData.getTeam();
         for (int i = 0; i < playerTeam.length; i++) {
             ImageService is = new ImageService();
-            Bitmap image = is.getImageFromWeb(playerTeam[i].getSpecies().getImageUrl(), this);
-            imageViews[i].setImageBitmap(image);
+            is.getImageFromWeb(playerTeam[i].getSpecies().getImageUrl(), this, imageViews[i]);
         }
 
         tv.setText("Current Teamrating: " + playerData.getTeamRating());

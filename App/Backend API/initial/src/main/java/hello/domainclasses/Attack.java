@@ -24,6 +24,10 @@ public class Attack
         return attack;
     }
 
+    public int getRating() {
+        return (int) (power * (accuracy / 100.0));
+    }
+
     public void setAttack(String attack) {
         this.attack = attack;
     }

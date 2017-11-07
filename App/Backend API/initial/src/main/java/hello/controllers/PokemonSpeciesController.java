@@ -2,6 +2,7 @@ package hello.controllers;
 
 import hello.data.SpeciesList;
 import hello.domainclasses.PokemonSpecies;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,16 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PokemonSpeciesController {
     @RequestMapping("/species")
-    public PokemonSpecies[] pokemonSpecies(@RequestParam(value = "name", defaultValue = "")String name, @RequestParam(value = "shop", defaultValue = "") String shop) {
+    public PokemonSpecies[] pokemonSpecies(@RequestParam(value = "shop", defaultValue = "") String shop) {
         if (shop.equals("")) {
-            if (name.equals("")) {
-                return SpeciesList.getAllSpecies();
-            } else {
-                return new PokemonSpecies[]{SpeciesList.getSpeciesByName(name)};
-            }
+            return SpeciesList.getAllSpecies();
         } else {
             return SpeciesList.getBuyableSpecies();
         }
     }
 
+    @RequestMapping("/species/{speciesId}")
+    public PokemonSpecies getSpeciesById(@PathVariable(value="speciesId")String speciesId) {
+        return SpeciesList.getSpeciesById(speciesId);
+    }
 }

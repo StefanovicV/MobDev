@@ -6,6 +6,7 @@ import hello.domainclasses.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by stefv on 24-Oct-17.
@@ -111,5 +112,11 @@ public class AttackList {
 
     public static Attack getAttackByName(String name) {
         return attacks.stream().filter(attack -> attack.getAttack().toLowerCase().equals(name.toLowerCase())).findAny().get();
+    }
+
+    public static Attack getAttackByRating(int rating) {
+        Attack[] possibilities = attacks.stream().filter(attack -> (attack.getRating() < (rating * 1.2) / 10 * 10) && (attack.getRating() > (rating * 0.8) / 10 * 10)).toArray(Attack[]::new);
+        Random rand = new Random();
+        return possibilities[rand.nextInt(possibilities.length)];
     }
 }

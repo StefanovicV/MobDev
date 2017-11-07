@@ -5,6 +5,7 @@ import hello.domainclasses.Type;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by stefv on 24-Oct-17.
@@ -96,6 +97,24 @@ public class SpeciesList {
 
     public static PokemonSpecies getSpeciesByName(String name) {
         return allSpecies.stream().filter(pokemonSpecies -> pokemonSpecies.getName().toLowerCase().equals(name.toLowerCase())).findAny().get();
+    }
+    public static PokemonSpecies getSpeciesById(String id) {
+        int idNumber = Integer.parseInt(id);
+        return allSpecies.stream().filter(pokemonSpecies -> pokemonSpecies.getId() == idNumber).findAny().get();
+    }
+    public static PokemonSpecies getSpeciesByRating(int rating) {
+        PokemonSpecies returnSpecies;
+        PokemonSpecies[] possibilities;
+        if (rating < 90) {
+            returnSpecies = caterpie;
+        } else if (rating < 550) {
+            possibilities = allSpecies.stream().filter(pokemonSpecies -> ((pokemonSpecies.getRating() < rating * 1.5) && (pokemonSpecies.getRating() > rating * 0.5))).toArray(PokemonSpecies[]::new);
+            Random rand = new Random();
+            returnSpecies = possibilities[rand.nextInt(possibilities.length)];
+        } else {
+            returnSpecies = mewtwo;
+        }
+        return returnSpecies;
     }
 
 
