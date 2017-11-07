@@ -37,6 +37,8 @@ public class PreBattleActivity extends AppCompatActivity {
         initializeButtons();
         try {
             playerData = (Player) InternalStorage.readObject(this, "PlayerData");
+            System.out.println("Current Player Data: ");
+            System.out.println("Coins: " + playerData.getOwnedCoins());
             bindData();
         } catch (Exception ex) {
             System.err.println("Error reading playerData: " + ex.getMessage());
