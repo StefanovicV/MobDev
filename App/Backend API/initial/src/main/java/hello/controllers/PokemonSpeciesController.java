@@ -13,16 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PokemonSpeciesController {
     @RequestMapping("/species")
-    public PokemonSpecies[] pokemonSpecies(@RequestParam(value = "shop", defaultValue = "") String shop) {
-        if (shop.equals("")) {
-            return SpeciesList.getAllSpecies();
-        } else {
-            return SpeciesList.getBuyableSpecies();
-        }
+    public PokemonSpecies[] pokemonSpecies() {
+
+        return SpeciesList.getBuyableSpecies();
     }
 
     @RequestMapping("/species/{speciesId}")
-    public PokemonSpecies getSpeciesById(@PathVariable(value="speciesId")String speciesId) {
+    public PokemonSpecies getSpeciesById(@PathVariable(value = "speciesId") String speciesId) {
         return SpeciesList.getSpeciesById(speciesId);
     }
 }

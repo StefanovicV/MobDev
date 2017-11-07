@@ -47,6 +47,25 @@ public class Player implements Serializable {
         return rating;
     }
 
+    public void addAttack(Attack attack) {
+        Attack[] a = new Attack[ownedAttacks.length + 1];
+        for (int i = 0; i < ownedAttacks.length; i++) {
+            a[i] = ownedAttacks[i];
+        }
+        a[ownedAttacks.length] = attack;
+        ownedAttacks = a;
+    }
+
+    public void addPokemon(PokemonSpecies species) {
+        Pokemon pokemon = new Pokemon(ownedPokemon.length + 1, species, new Attack[] {ownedAttacks[0]});
+        Pokemon[] p = new Pokemon[ownedPokemon.length + 1];
+        for (int i = 0; i < ownedPokemon.length; i++) {
+            p[i] = ownedPokemon[i];
+        }
+        p[ownedPokemon.length] = pokemon;
+        ownedPokemon = p;
+    }
+
     public Pokemon[] getOwnedPokemon() {
         return ownedPokemon;
     }

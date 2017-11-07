@@ -18,6 +18,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.pxl.stefvrijens.pokebattle.Shop;
+import be.pxl.stefvrijens.pokebattle.domainclasses.Attack;
+
 /**
  * Created by stefv on 27-Oct-17.
  */
@@ -136,6 +139,38 @@ public class ShopService {
         requestQueue.add(jsonObjectRequest);
 
         return pokemons;
+    }
+
+    public void GetAttacks(Activity a, final Shop.ShopCallback callback) {
+        RequestQueue requestQueue = Volley.newRequestQueue(a);
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, "http://10.0.2.2:8080/attacks", null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                callback.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("Shopservice error: " + error.getMessage());
+            }
+        });
+        requestQueue.add(request);
+    }
+
+    public void GetSpecies(Activity a, final Shop.ShopCallback callback) {
+        RequestQueue requestQueue = Volley.newRequestQueue(a);
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, "http://10.0.2.2:8080/species", null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                callback.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("Shopservice error: " + error.getMessage());
+            }
+        });
+        requestQueue.add(request);
     }
 
 }
