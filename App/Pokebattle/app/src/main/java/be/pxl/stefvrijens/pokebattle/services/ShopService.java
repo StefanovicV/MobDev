@@ -29,7 +29,7 @@ public class ShopService {
         RequestQueue requestQueue = Volley.newRequestQueue(a);
         final List<String> items = new ArrayList<>();
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://localhost:8080/shop", null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://10.0.2.2:8080/shop", null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -41,7 +41,7 @@ public class ShopService {
                                 String name = item.getString("name");
                                 int cost = item.getInt("cost");
 
-                                items.add(name + " " + cost);
+                                items.add(name + "\t\t\t" + cost);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -67,7 +67,7 @@ public class ShopService {
         RequestQueue requestQueue = Volley.newRequestQueue(a);
         final List<String> attacks = new ArrayList<>();
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://localhost:8080/shop", null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://10.0.2.2:8080/shop", null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -76,10 +76,10 @@ public class ShopService {
                             for (int i = 1; i < jsonAttackArray.length(); i++){
                                 JSONObject attack = jsonAttackArray.getJSONObject(i);
 
-                                String name = attack.getString("name");
+                                String name = attack.getString("attack");
                                 int cost = attack.getInt("cost");
 
-                                attacks.add(name + " " + cost);
+                                attacks.add(name + "\t\t\t" + cost);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -105,7 +105,7 @@ public class ShopService {
         RequestQueue requestQueue = Volley.newRequestQueue(a);
         final List<String> pokemons = new ArrayList<>();
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://localhost:8080/shop", null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://10.0.2.2:8080/shop", null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -117,7 +117,7 @@ public class ShopService {
                                 String name = pokemon.getString("name");
                                 int cost = pokemon.getInt("cost");
 
-                                pokemons.add(name + " " + cost);
+                                pokemons.add(name + "\t\t\t" + cost);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
