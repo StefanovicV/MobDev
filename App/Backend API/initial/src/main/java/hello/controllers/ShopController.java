@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ShopController {
-    Shop shop = new Shop(ItemList.getList(), AttackList.getAttacksList(), SpeciesList.getAllSpecies());
+    Shop shop = new Shop(ItemList.getList(), AttackList.getAttacksList(), SpeciesList.getBuyableSpecies());
 
     @RequestMapping("/shop")
     public Shop shopList(){

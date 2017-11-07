@@ -97,9 +97,19 @@ public class BattleAttacks extends Fragment {
 
     public void updateButtonDatabinding(Pokemon playerPokemon) {
         Attack[] attacks = playerPokemon.getAttacks();
-        for (int i = 0; i < 4; i++) {
-            buttons[i].setText(attacks[i].getName());
+        for (int i = 0; i < attacks.length; i++) {
+            if (attacks[i] != null) {
+                buttons[i].setText(attacks[i].getName());
+                buttons[i].setEnabled(true);
+            }
         }
+        if (attacks.length < 4) {
+            for (int i = attacks.length; i < 4; i++) {
+                buttons[i].setText("");
+                buttons[i].setEnabled(false);
+            }
+        }
+
     }
 
 }

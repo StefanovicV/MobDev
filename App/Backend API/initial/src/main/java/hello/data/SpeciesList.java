@@ -1,10 +1,12 @@
 package hello.data;
 
+import hello.domainclasses.Pokemon;
 import hello.domainclasses.PokemonSpecies;
 import hello.domainclasses.Type;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by stefv on 24-Oct-17.
@@ -81,10 +83,8 @@ public class SpeciesList {
 
     private static PokemonSpecies mewtwo = new PokemonSpecies(150, "Mewtwo", Type.PSYCHIC, null, 7500, null, 0, 130,150,150,120);
 
-
-
-    private static List<PokemonSpecies> allSpecies = Arrays.asList(bulbasaur, charmander, squirtle, caterpie, weedle, pidgey, pichu, zubat, oddish, poliwag, abra, machop, geodude, gastly, dratini, articuno, zapdos, moltres, mewtwo);
-    private static List<PokemonSpecies> buyableSpecies = Arrays.asList(bulbasaur);
+    private static List<PokemonSpecies> allSpecies = Arrays.asList(bulbasaur, ivysaur, venusaur, charmander, charmeleon, charizard, squirtle, wartortle, blastoise, caterpie, metapod, butterfree, weedle, kakuna, beedrill, pidgey, pidgeotto, pidgeot, pichu, pikachu, raichu, zubat, golbat, crobat, oddish, gloom, vileplume, poliwag, poliwhirl, poliwrath, abra, kadabra, alakazam, machop, machoke, machamp, geodude, graveler, golem, gastly, haunter, gengar, dratini, dragonair, dragonite, articuno, zapdos, moltres, mewtwo);
+    private static List<PokemonSpecies> buyableSpecies = Arrays.asList(bulbasaur, charmander, squirtle, caterpie, weedle, pidgey, pichu, zubat, oddish, poliwag, abra, machop, geodude, gastly, dratini, articuno, zapdos, moltres, mewtwo);
 
     public static PokemonSpecies[] getAllSpecies() {
         return (PokemonSpecies[]) allSpecies.toArray();
@@ -96,6 +96,24 @@ public class SpeciesList {
 
     public static PokemonSpecies getSpeciesByName(String name) {
         return allSpecies.stream().filter(pokemonSpecies -> pokemonSpecies.getName().toLowerCase().equals(name.toLowerCase())).findAny().get();
+    }
+    public static PokemonSpecies getSpeciesById(String id) {
+        int idNumber = Integer.parseInt(id);
+        return allSpecies.stream().filter(pokemonSpecies -> pokemonSpecies.getId() == idNumber).findAny().get();
+    }
+    public static PokemonSpecies getSpeciesByRating(int rating) {
+        PokemonSpecies returnSpecies;
+        PokemonSpecies[] possibilities;
+        if (rating < 90) {
+            returnSpecies = caterpie;
+        } else if (rating < 550) {
+            possibilities = allSpecies.stream().filter(pokemonSpecies -> ((pokemonSpecies.getRating() < rating * 1.5) && (pokemonSpecies.getRating() > rating * 0.5))).toArray(PokemonSpecies[]::new);
+            Random rand = new Random();
+            returnSpecies = possibilities[rand.nextInt(possibilities.length)];
+        } else {
+            returnSpecies = mewtwo;
+        }
+        return returnSpecies;
     }
 
 

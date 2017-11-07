@@ -49,8 +49,8 @@ public class BattleVisuals extends Fragment {
 
     public void updateVisuals(Pokemon playerPokemon, Pokemon enemyPokemon) {
         ImageService is = new ImageService();
-        enemyImage.setImageBitmap(is.getImageFromWeb(enemyPokemon.getSpecies().getImageUrl(), this.getContext()));
-        playerImage.setImageBitmap(is.getImageFromWeb(playerPokemon.getSpecies().getImageUrl(), this.getContext()));
+        is.getImageFromWeb(enemyPokemon.getSpecies().getImageUrl(), this.getContext(), enemyImage);
+        is.getImageFromWeb(playerPokemon.getSpecies().getImageUrl(), this.getContext(), playerImage);
         enemyName.setText(enemyPokemon.getSpecies().getName());
         playerName.setText(playerPokemon.getSpecies().getName());
         enemyHealth.setMax(enemyPokemon.getSpecies().getHp() * 4);

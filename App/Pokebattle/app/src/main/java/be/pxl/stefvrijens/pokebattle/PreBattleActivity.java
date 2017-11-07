@@ -11,10 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import org.json.JSONObject;
+
 import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
 import be.pxl.stefvrijens.pokebattle.services.ImageService;
 import be.pxl.stefvrijens.pokebattle.services.InternalStorage;
+import be.pxl.stefvrijens.pokebattle.services.PokemonService;
 
 public class PreBattleActivity extends AppCompatActivity {
     Button fightButton;
@@ -25,6 +28,7 @@ public class PreBattleActivity extends AppCompatActivity {
     ToggleButton hardToggleButton;
 
     Player playerData;
+    Pokemon[] enemyTeam = new Pokemon[6];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +43,9 @@ public class PreBattleActivity extends AppCompatActivity {
         }
     }
 
-    private Pokemon[] generateEnemyTeam() {
+    private void generateEnemyTeam() {
         int playerTeamRating;
-        int currentEnemyTeamRating = 0;
         int enemyTeamRatingGuide;
-        Pokemon[] team = new Pokemon[6];
 
         playerTeamRating = playerData.getTeamRating();
 
@@ -55,21 +57,23 @@ public class PreBattleActivity extends AppCompatActivity {
             enemyTeamRatingGuide = playerTeamRating + 200;
         }
 
-        for (int i = 0; i < 6; i++) {
-            Pokemon pokemon = null;
-            int thisPokemonRatingGuide = enemyTeamRatingGuide / 6;
-
-            //TODO: Replace this with random pokemon from API with thisPokemonRatingGuide
-            pokemon = Pokemon.generateTestPokemon();
-            team[i] = pokemon;
-            currentEnemyTeamRating += pokemon.getPokemonRating();
-
-           if (currentEnemyTeamRating >= enemyTeamRatingGuide) {
-               break;
-           }
-        }
-        return team;
+        PokemonService ps = new PokemonService();
+        ps.GetTeamByRating(enemyTeamRatingGuide, this, new PreBattleCallback() {
+            @Override
+            public void onSuccess(Pokemon[] result) {
+                enemyTeam = result;
+                for (int i = 0; i < enemyTeam.length; i++) {
+                    enemyTeam[i].resetCurrentHp();
+                    System.out.println(enemyTeam[i].getSpecies().getName());
+                }
+                Intent in=new Intent(PreBattleActivity.this, BattleActivity.class);
+                in.putExtra("EnemyTeam", enemyTeam);
+                startActivity(in);
+            }
+        });
     }
+
+
 
     private void bindData() {
         ImageView[] imageViews = new ImageView[] {
@@ -85,11 +89,14 @@ public class PreBattleActivity extends AppCompatActivity {
         Pokemon[] playerTeam = playerData.getTeam();
         for (int i = 0; i < playerTeam.length; i++) {
             ImageService is = new ImageService();
-            Bitmap image = is.getImageFromWeb(playerTeam[i].getSpecies().getImageUrl(), this);
-            imageViews[i].setImageBitmap(image);
+            is.getImageFromWeb(playerTeam[i].getSpecies().getImageUrl(), this, imageViews[i]);
         }
 
         tv.setText("Current Teamrating: " + playerData.getTeamRating());
+    }
+
+    public interface PreBattleCallback{
+        void onSuccess(Pokemon[] result);
     }
 
     private void initializeButtons() {
@@ -104,10 +111,7 @@ public class PreBattleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (easyToggleButton.isChecked() || mediumToggleButton.isChecked() || hardToggleButton.isChecked()) {
-                    Pokemon[] enemyTeam = generateEnemyTeam();
-                    Intent in=new Intent(PreBattleActivity.this, BattleActivity.class);
-                    in.putExtra("EnemyTeam", enemyTeam);
-                    startActivity(in);
+                    generateEnemyTeam();
                 }
             }
         });

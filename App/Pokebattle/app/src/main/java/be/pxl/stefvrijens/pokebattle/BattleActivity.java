@@ -46,6 +46,9 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
         enemyPokemonNumber = 0;
         playerPokemon = playerTeam[0];
         enemyPokemon = enemyTeam[0];
+        if (enemyPokemon == null) {
+            enemyPokemon = Pokemon.generateTestPokemon();
+        }
         manager = getFragmentManager();
         visuals = (BattleVisuals) getSupportFragmentManager().findFragmentById(R.id.battleVisuals);
         visuals.updateVisuals(playerPokemon, enemyPokemon);
@@ -55,10 +58,11 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
     public void doFightButtonClick(View view) {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack("");
-        transaction.replace(R.id.battleChoice, new BattleAttacks());
-        BattleAttacks bat = (BattleAttacks) manager.findFragmentById(R.id.battleChoice);
-        bat.updateButtonDatabinding(playerPokemon);
+        transaction.replace(R.id.battleChoice, new BattleAttacks(), "battleAttacks");
         transaction.commit();
+        manager.executePendingTransactions();
+        BattleAttacks bat = (BattleAttacks) manager.findFragmentByTag("battleAttacks");
+        bat.updateButtonDatabinding(playerPokemon);
     }
 
     @Override
@@ -152,7 +156,7 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
     }
 
     public void enemyMove() {
-        Attack enemyChosenAttack = enemyPokemon.getAttacks()[rand.nextInt(4)];
+        Attack enemyChosenAttack = enemyPokemon.getAttacks()[rand.nextInt(enemyPokemon.getAttacks().length)];
         playerPokemon.calculateDamage(enemyChosenAttack, enemyPokemon);
         visuals.addToLog("The enemy " + enemyPokemon.getSpecies().getName() + " used " + enemyChosenAttack.getName());
         visuals.updateVisuals(playerPokemon, enemyPokemon);
@@ -164,30 +168,29 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
         if (isPlayer) {
             visuals.addToLog(playerPokemon.getSpecies().getName() + " fainted.");
             playerPokemon.setCurrentHp(0);
-            // TODO: Display playerPokemon dead animation
-            // BattleOver(false) if no pokemon left with >0 health
             boolean hasSurvivingPokemon = false;
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < playerTeam.length; i++) {
                 if (playerTeam[i].getCurrentHp() > 0) {
+                    switchPokemon(playerTeam[i]);
                     hasSurvivingPokemon = true;
+                    break;
                 }
             }
+            // TODO: Display playerPokemon dead animation
+            // BattleOver(false) if no pokemon left with >0 health
             if (hasSurvivingPokemon == false) {
                 visuals.addToLog("You lost.");
                 battleOver(false);
-            } else {
-                // TODO: Allow player to choose new pokemon (with >0 health)
             }
-
-
             // TODO: Display new playerPokemon animation
         } else {
             visuals.addToLog("Enemy " + enemyPokemon.getSpecies().getName() + " fainted.");
             enemyPokemon.setCurrentHp(0);
             // TODO: Display enemyPokemon dead animation
             enemyPokemonNumber++;
-            if (enemyPokemonNumber < 6) {
+            if (enemyPokemonNumber < enemyTeam.length) {
                 enemyPokemon = enemyTeam[enemyPokemonNumber];
+                visuals.updateVisuals(playerPokemon, enemyPokemon);
                 // TODO: Display new enemyPokemon animation
             } else {
                 battleOver(true);
@@ -198,6 +201,7 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
     public void battleOver(boolean playerWins) {
         Intent in = new Intent(BattleActivity.this, PostBattle.class);
         in.putExtra("PlayerWon", playerWins);
+        in.putExtra("EnemyTeam", enemyTeam);
         startActivity(in);
     }
 

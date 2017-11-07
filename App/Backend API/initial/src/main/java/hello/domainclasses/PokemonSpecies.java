@@ -56,6 +56,10 @@ public class PokemonSpecies {
         this.imageUrl = url;
     }
 
+    public int getRating() {
+        return speed + defense + attack + hp;
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }
