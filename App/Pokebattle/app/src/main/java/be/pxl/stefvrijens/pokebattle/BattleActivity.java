@@ -2,6 +2,7 @@ package be.pxl.stefvrijens.pokebattle;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,35 +13,42 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Attack;
+import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
+import be.pxl.stefvrijens.pokebattle.services.InternalStorage;
 
-public class BattleActivity extends AppCompatActivity implements BattleVisuals.OnFragmentInteractionListener, BattleChoice.OnFragmentInteractionListener, BattleAttacks.OnAttackButtonClick, BattleItems.OnFragmentInteractionListener, BattleSwitchPokemon.OnFragmentInteractionListener,
-        BattleChoice.OnFightButtonClick, BattleChoice.OnUseItemButtonClick, BattleChoice.OnSwitchPokemonButtonClick {
+public class BattleActivity extends AppCompatActivity implements BattleAttacks.OnAttackButtonClick, BattleChoice.OnFightButtonClick,
+        BattleChoice.OnUseItemButtonClick, BattleChoice.OnSwitchPokemonButtonClick {
     Pokemon playerPokemon;
     Pokemon enemyPokemon;
-    List<Pokemon> playerTeam;
-    List<Pokemon> enemyTeam;
+    Pokemon[] playerTeam;
+    Pokemon[] enemyTeam;
+    Player playerData;
     int enemyPokemonNumber;
     Random rand = new Random();
     FragmentManager manager;
+    BattleVisuals visuals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
 
-        // TODO: Get enemyTeam from previous activity
-        // TODO: Get playerTeam from localStorage
-        enemyTeam = new ArrayList<Pokemon>();
+        try {
+            playerData = (Player) InternalStorage.readObject(this, "PlayerData");
+
+        } catch (Exception ex) {
+            System.err.println("Internalstorage error: " + ex.getMessage());
+        }
+
+        enemyTeam = (Pokemon[]) getIntent().getSerializableExtra("EnemyTeam");
+        playerTeam = playerData.getTeam();
         enemyPokemonNumber = 0;
-        playerPokemon = playerTeam.get(0);
-        enemyPokemon = enemyTeam.get(0);
+        playerPokemon = playerTeam[0];
+        enemyPokemon = enemyTeam[0];
         manager = getFragmentManager();
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
+        visuals = (BattleVisuals) getSupportFragmentManager().findFragmentById(R.id.battleVisuals);
+        visuals.updateVisuals(playerPokemon, enemyPokemon);
     }
 
     @Override
@@ -48,6 +56,8 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.addToBackStack("");
         transaction.replace(R.id.battleChoice, new BattleAttacks());
+        BattleAttacks bat = (BattleAttacks) manager.findFragmentById(R.id.battleChoice);
+        bat.updateButtonDatabinding(playerPokemon);
         transaction.commit();
     }
 
@@ -74,7 +84,8 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
             enemyMove();
             if (playerPokemon.getCurrentHp() > 0) {
                 enemyPokemon.calculateDamage(attack, playerPokemon);
-                // TODO: Display in log: playerPokemon used attack
+                visuals.addToLog(playerPokemon.getSpecies().getName() + " used " + attack.getName());
+                visuals.updateVisuals(playerPokemon, enemyPokemon);
                 // TODO: Display playerPokemon animation
             } else {
                 deadPokemon(true);
@@ -84,7 +95,8 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
             }
         } else {
             enemyPokemon.calculateDamage(attack, playerPokemon);
-            // TODO: Display in log: playerPokemon used attack
+            visuals.addToLog(playerPokemon.getSpecies().getName() + " used " + attack.getName());
+            visuals.updateVisuals(playerPokemon, enemyPokemon);
             // TODO: Display playerPokemon animation
             // TODO: Wait 2 sec
 
@@ -102,25 +114,39 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
     }
 
     public void switchPokemon(Pokemon pokemon) {
-        // TODO: Disable controls
-        // TODO: Display in log: Come back, playerPokemon.
-        // TODO: playerPokemon leave animation
-        playerPokemon = pokemon;
-        // TODO: Display in log: Go! Pokemon!.
-        // TODO: playerPokemon entry animation
-        // TODO: Wait 2 sec
-        enemyMove();
-        // TODO: Enable controls
+        if (pokemon.getCurrentHp() > 0) {
+            // TODO: Disable controls
+            visuals.addToLog("Come back, " + playerPokemon.getSpecies().getName());
+            // TODO: playerPokemon leave animation
+            playerPokemon = pokemon;
+            visuals.addToLog("Go, " + pokemon.getSpecies().getName() + "!");
+            visuals.updateVisuals(playerPokemon, enemyPokemon);
+            // TODO: playerPokemon entry animation
+            // TODO: Wait 2 sec
+            enemyMove();
+            // TODO: Enable controls
+        } else {
+            visuals.addToLog("This pokemon can't fight anymore");
+        }
     }
 
     public void useItem(String typeOfItem) {
         if (typeOfItem.toLowerCase().equals("potion")) {
             playerPokemon.setCurrentHp(playerPokemon.getCurrentHp() + 20);
+            playerData.setOwnedPotions(playerData.getOwnedPotions() - 1);
+            visuals.addToLog("You used a potion " + playerPokemon.getSpecies().getName() + " healed 20HP.");
+            visuals.updateVisuals(playerPokemon, enemyPokemon);
         } else if (typeOfItem.toLowerCase().equals("superpotion")) {
             playerPokemon.setCurrentHp(playerPokemon.getCurrentHp() + 50);
+            playerData.setOwnedSuperPotions(playerData.getOwnedSuperPotions() - 1);
+            visuals.addToLog("You used a Super Potion " + playerPokemon.getSpecies().getName() + " healed 50HP.");
+            visuals.updateVisuals(playerPokemon, enemyPokemon);
         }
-        // TODO: Display in log: You used a potion/superpotion, playerPokemon healed 20/50HP.
-        // TODO: Update LOCALSTORAGE (reduce potions/superpotions by 1)
+        try {
+            InternalStorage.writeObject(this, "PlayerData", playerData);
+        } catch (Exception ex) {
+            System.err.println("Error writing playerdata: " + ex.getMessage());
+        }
         // TODO: Wait 2 sec
         enemyMove();
     }
@@ -128,37 +154,40 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
     public void enemyMove() {
         Attack enemyChosenAttack = enemyPokemon.getAttacks()[rand.nextInt(4)];
         playerPokemon.calculateDamage(enemyChosenAttack, enemyPokemon);
-        // TODO: Display in log: enemyPokemon used enemyChosenAttack
+        visuals.addToLog("The enemy " + enemyPokemon.getSpecies().getName() + " used " + enemyChosenAttack.getName());
+        visuals.updateVisuals(playerPokemon, enemyPokemon);
         // TODO: Display enemyPokemon animation
         // TODO: Wait 2 sec
     }
 
     public void deadPokemon(boolean isPlayer) {
         if (isPlayer) {
+            visuals.addToLog(playerPokemon.getSpecies().getName() + " fainted.");
             playerPokemon.setCurrentHp(0);
             // TODO: Display playerPokemon dead animation
-            // TODO: Allow player to choose new pokemon (with >0 health)
-
-
             // BattleOver(false) if no pokemon left with >0 health
             boolean hasSurvivingPokemon = false;
             for (int i = 0; i < 6; i++) {
-                if (playerTeam.get(i).getCurrentHp() > 0) {
+                if (playerTeam[i].getCurrentHp() > 0) {
                     hasSurvivingPokemon = true;
                 }
             }
             if (hasSurvivingPokemon == false) {
+                visuals.addToLog("You lost.");
                 battleOver(false);
+            } else {
+                // TODO: Allow player to choose new pokemon (with >0 health)
             }
 
 
             // TODO: Display new playerPokemon animation
         } else {
+            visuals.addToLog("Enemy " + enemyPokemon.getSpecies().getName() + " fainted.");
             enemyPokemon.setCurrentHp(0);
             // TODO: Display enemyPokemon dead animation
             enemyPokemonNumber++;
             if (enemyPokemonNumber < 6) {
-                enemyPokemon = enemyTeam.get(enemyPokemonNumber);
+                enemyPokemon = enemyTeam[enemyPokemonNumber];
                 // TODO: Display new enemyPokemon animation
             } else {
                 battleOver(true);
@@ -167,7 +196,9 @@ public class BattleActivity extends AppCompatActivity implements BattleVisuals.O
     }
 
     public void battleOver(boolean playerWins) {
-        // TODO: Navigate to PostBattle with playerWins as variable
+        Intent in = new Intent(BattleActivity.this, PostBattle.class);
+        in.putExtra("PlayerWon", playerWins);
+        startActivity(in);
     }
 
 

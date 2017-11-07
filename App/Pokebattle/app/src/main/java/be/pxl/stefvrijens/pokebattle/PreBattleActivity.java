@@ -1,15 +1,19 @@
 package be.pxl.stefvrijens.pokebattle;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
+import be.pxl.stefvrijens.pokebattle.services.ImageService;
 import be.pxl.stefvrijens.pokebattle.services.InternalStorage;
 
 public class PreBattleActivity extends AppCompatActivity {
@@ -20,8 +24,6 @@ public class PreBattleActivity extends AppCompatActivity {
     ToggleButton mediumToggleButton;
     ToggleButton hardToggleButton;
 
-    Pokemon[] enemyTeam;
-
     Player playerData;
 
     @Override
@@ -31,16 +33,14 @@ public class PreBattleActivity extends AppCompatActivity {
         initializeButtons();
         try {
             playerData = (Player) InternalStorage.readObject(this, "PlayerData");
+            bindData();
         } catch (Exception ex) {
             System.err.println("Error reading playerData: " + ex.getMessage());
         }
-        TextView tv = (TextView)findViewById(R.id.teamRatingPreBattle);
-        tv.setText("Current Teamrating: " + playerData.getTeamRating());
-        // TODO: Databind playerData.team
     }
 
     private Pokemon[] generateEnemyTeam() {
-        int playerTeamRating = 0;
+        int playerTeamRating;
         int currentEnemyTeamRating = 0;
         int enemyTeamRatingGuide;
         Pokemon[] team = new Pokemon[6];
@@ -58,7 +58,9 @@ public class PreBattleActivity extends AppCompatActivity {
         for (int i = 0; i < 6; i++) {
             Pokemon pokemon = null;
             int thisPokemonRatingGuide = enemyTeamRatingGuide / 6;
-            //TODO: Get random pokemon from API with thisPokemonRatingGuide
+
+            //TODO: Replace this with random pokemon from API with thisPokemonRatingGuide
+            pokemon = Pokemon.generateTestPokemon();
             team[i] = pokemon;
             currentEnemyTeamRating += pokemon.getPokemonRating();
 
@@ -67,6 +69,27 @@ public class PreBattleActivity extends AppCompatActivity {
            }
         }
         return team;
+    }
+
+    private void bindData() {
+        ImageView[] imageViews = new ImageView[] {
+                (ImageView)findViewById(R.id.pokemon1Image),
+                (ImageView)findViewById(R.id.pokemon2Image),
+                (ImageView)findViewById(R.id.pokemon3Image),
+                (ImageView)findViewById(R.id.pokemon4Image),
+                (ImageView)findViewById(R.id.pokemon5Image),
+                (ImageView)findViewById(R.id.pokemon6Image)
+        };
+        TextView tv = (TextView)findViewById(R.id.teamRatingPreBattle);
+
+        Pokemon[] playerTeam = playerData.getTeam();
+        for (int i = 0; i < playerTeam.length; i++) {
+            ImageService is = new ImageService();
+            Bitmap image = is.getImageFromWeb(playerTeam[i].getSpecies().getImageUrl(), this);
+            imageViews[i].setImageBitmap(image);
+        }
+
+        tv.setText("Current Teamrating: " + playerData.getTeamRating());
     }
 
     private void initializeButtons() {
@@ -80,10 +103,12 @@ public class PreBattleActivity extends AppCompatActivity {
         fightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Pokemon[] enemyTeam = generateEnemyTeam();
-                // TODO: Pass enemyTeam to BattleActivity
-                Intent in=new Intent(PreBattleActivity.this, BattleActivity.class);
-                startActivity(in);
+                if (easyToggleButton.isChecked() || mediumToggleButton.isChecked() || hardToggleButton.isChecked()) {
+                    Pokemon[] enemyTeam = generateEnemyTeam();
+                    Intent in=new Intent(PreBattleActivity.this, BattleActivity.class);
+                    in.putExtra("EnemyTeam", enemyTeam);
+                    startActivity(in);
+                }
             }
         });
 

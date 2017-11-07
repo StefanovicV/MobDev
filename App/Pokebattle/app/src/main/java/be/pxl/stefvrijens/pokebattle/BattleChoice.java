@@ -77,10 +77,6 @@ public class BattleChoice extends Fragment {
         }
     }
 
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
-
     public void fightButtonClick(View v){
         buttonFightClickInterface.doFightButtonClick(v);
     }
