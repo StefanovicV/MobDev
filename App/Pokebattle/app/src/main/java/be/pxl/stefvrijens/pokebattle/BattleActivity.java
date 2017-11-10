@@ -88,8 +88,12 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
         if (playerPokemon.getSpecies().getSpeed() < enemyPokemon.getSpecies().getSpeed()) {
             enemyMove();
             if (playerPokemon.getCurrentHp() > 0) {
-                enemyPokemon.calculateDamage(attack, playerPokemon);
+                String effect;
+                effect = enemyPokemon.calculateDamage(attack, playerPokemon);
                 visuals.addToLog(playerPokemon.getSpecies().getName() + " used " + attack.getName());
+                if (!effect.equals("")) {
+                    visuals.addToLog(effect);
+                }
                 visuals.updateVisuals(playerPokemon, enemyPokemon);
                 // TODO: Display playerPokemon animation
             } else {
@@ -99,8 +103,12 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
                 deadPokemon(false);
             }
         } else {
-            enemyPokemon.calculateDamage(attack, playerPokemon);
+            String effect;
+            effect = enemyPokemon.calculateDamage(attack, playerPokemon);
             visuals.addToLog(playerPokemon.getSpecies().getName() + " used " + attack.getName());
+            if (!effect.equals("")) {
+                visuals.addToLog(effect);
+            }
             visuals.updateVisuals(playerPokemon, enemyPokemon);
             // TODO: Display playerPokemon animation
             // TODO: Wait 2 sec
@@ -159,8 +167,11 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
 
     public void enemyMove() {
         Attack enemyChosenAttack = enemyPokemon.getAttacks()[rand.nextInt(enemyPokemon.getAttacks().length)];
-        playerPokemon.calculateDamage(enemyChosenAttack, enemyPokemon);
+        String effect = playerPokemon.calculateDamage(enemyChosenAttack, enemyPokemon);
         visuals.addToLog("The enemy " + enemyPokemon.getSpecies().getName() + " used " + enemyChosenAttack.getName());
+        if (!effect.equals("")) {
+            visuals.addToLog(effect);
+        }
         visuals.updateVisuals(playerPokemon, enemyPokemon);
         // TODO: Display enemyPokemon animation
         // TODO: Wait 2 sec
@@ -195,6 +206,7 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
                     if (enemyPokemonNumber < enemyTeam.length) {
                         enemyPokemon = enemyTeam[enemyPokemonNumber];
                         visuals.updateVisuals(playerPokemon, enemyPokemon);
+                        visuals.addToLog("Enemy sent out " + enemyPokemon.getSpecies().getName());
                         visuals.pokemonEntry(false, false);
                     } else {
                         battleOver(true);

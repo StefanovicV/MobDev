@@ -76,28 +76,37 @@ public class Pokemon implements Serializable {
         this.currentHp = currentHp;
     }
 
-    public void calculateDamage(Attack incomingAttack, Pokemon attackingPokemon) {
+    public String calculateDamage(Attack incomingAttack, Pokemon attackingPokemon) {
         double damage = incomingAttack.getPower() / 2;
+        double effectivenessFactor = 1;
         if (incomingAttack.getType().equals(attackingPokemon.getSpecies().getType1()) || (attackingPokemon.getSpecies() != null && incomingAttack.getType().equals(attackingPokemon.getSpecies().getType2()))) {
             damage = 1.5 * damage;
         }
         if (species.getType1().hasResistanceTo(incomingAttack.getType())) {
-            damage = 0.5 * damage;
+            effectivenessFactor = 0.5* effectivenessFactor;
         }
         if (species.getType2() != null) {
             if (species.getType2().hasResistanceTo(incomingAttack.getType())) {
-                damage = 0.5 * damage;
+                effectivenessFactor = 0.5* effectivenessFactor;
             }
             if (species.getType2().hasWeaknessTo(incomingAttack.getType())) {
-                damage = 2 * damage;
+                effectivenessFactor = 2 * effectivenessFactor;
             }
         }
         if (species.getType1().hasWeaknessTo(incomingAttack.getType())) {
-            damage = 2 * damage;
+            effectivenessFactor = 2 * effectivenessFactor;
         }
+        damage *= effectivenessFactor;
         int powerDifference = attackingPokemon.getSpecies().getAttack() - species.getDefense();
         double multiplier = 1 + powerDifference / 100;
         damage *= multiplier;
         currentHp = (int) (currentHp - damage);
+        if (effectivenessFactor >= 2) {
+            return "It's super effective!";
+        } else if (effectivenessFactor <= 0.5) {
+            return "It's not very effective.";
+        } else {
+            return "";
+        }
     }
 }
