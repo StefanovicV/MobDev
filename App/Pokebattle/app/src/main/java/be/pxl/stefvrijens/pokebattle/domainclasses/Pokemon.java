@@ -1,6 +1,7 @@
 package be.pxl.stefvrijens.pokebattle.domainclasses;
 
 import java.io.Serializable;
+import java.util.Random;
 
 /**
  * Created by stefv on 25-Oct-17.
@@ -79,6 +80,12 @@ public class Pokemon implements Serializable {
     public String calculateDamage(Attack incomingAttack, Pokemon attackingPokemon) {
         double damage = incomingAttack.getPower() / 2;
         double effectivenessFactor = 1;
+        if (incomingAttack.getAccuracy() < 100) {
+            Random rand = new Random();
+            if (incomingAttack.getAccuracy() < rand.nextInt(101)) {
+                return attackingPokemon.getSpecies().getName() + " missed.";
+            }
+        }
         if (incomingAttack.getType().equals(attackingPokemon.getSpecies().getType1()) || (attackingPokemon.getSpecies() != null && incomingAttack.getType().equals(attackingPokemon.getSpecies().getType2()))) {
             damage = 1.5 * damage;
         }

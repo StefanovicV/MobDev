@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import be.pxl.stefvrijens.pokebattle.domainclasses.Attack;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
@@ -96,10 +97,19 @@ public class BattleAttacks extends Fragment {
     }
 
     public void updateButtonDatabinding(Pokemon playerPokemon) {
-        Attack[] attacks = playerPokemon.getAttacks();
+        final Attack[] attacks = playerPokemon.getAttacks();
         for (int i = 0; i < attacks.length; i++) {
             if (attacks[i] != null) {
+                final String toolTip = attacks[i].getType() + "\n" + attacks[i].getPower() + " Power\n" + attacks[i].getAccuracy() + " Accuracy";
                 buttons[i].setText(attacks[i].getName());
+                buttons[i].setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        Toast toast = Toast.makeText(view.getContext(), toolTip, Toast.LENGTH_SHORT);
+                        toast.show();
+                        return true;
+                    }
+                });
                 buttons[i].setEnabled(true);
             }
         }

@@ -44,11 +44,6 @@ public class MainMenuActivity extends AppCompatActivity {
     private void generatePlayerData() {
         PokemonService ps = new PokemonService();
 
-//        //FOR CHEATING PURPOSES:
-//        firstSpecies = new PokemonSpecies(150, "Mewtwo", Type.PSYCHIC, null, 0, null, 0, 150,150,150,150, "https://www.lepetitshaman.com/wp-content/uploads/2016/07/mewtwo-pokemon-go.jpg");
-//        firstAttack = new Attack("Psychic", Type.PSYCHIC, 90, 100, 0);
-//        createNewPlayerData();
-
         System.out.println("Creating PlayerData");
         ps.GetSpeciesById(25, this, new MainMenuCallback() {
             @Override
@@ -79,6 +74,16 @@ public class MainMenuActivity extends AppCompatActivity {
     private void createNewPlayerData() {
         if (firstAttack != null && firstSpecies != null) {
             Pokemon firstPokemon = new Pokemon(1, firstSpecies, new Attack[]{firstAttack});
+//
+//            //If cheating:
+//        firstSpecies = new PokemonSpecies(150, "Mewtwo", Type.PSYCHIC, null, 0, null, 0, 150,150,150,150, "https://www.lepetitshaman.com/wp-content/uploads/2016/07/mewtwo-pokemon-go.jpg");
+//        firstAttack = new Attack("Psychic", Type.PSYCHIC, 90, 100, 0);
+//        Attack secondAttack = new Attack("Thunderbolt", Type.ELECTRIC, 90, 100, 0);
+//        Attack thirdAttack = new Attack("Flamethrower", Type.FIRE, 90, 100, 0);
+//        Attack fourthAttack = new Attack("Hydro Pump", Type.WATER, 120, 70, 0);
+//        Pokemon firstPokemon = new Pokemon(1, firstSpecies, new Attack[]{firstAttack, secondAttack, thirdAttack, fourthAttack});
+
+
             Player player = new Player(new Pokemon[]{firstPokemon}, 50, 0, 0, new Attack[]{firstAttack}, new Pokemon[]{firstPokemon});
             try {
                 InternalStorage.writeObject(this, "PlayerData", player);
