@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
 import be.pxl.stefvrijens.pokebattle.services.ImageService;
+import be.pxl.stefvrijens.pokebattle.services.ProgressBarAnimation;
 
 
 public class BattleVisuals extends Fragment {
@@ -54,8 +55,12 @@ public class BattleVisuals extends Fragment {
         enemyName.setText(enemyPokemon.getSpecies().getName());
         playerName.setText(playerPokemon.getSpecies().getName());
         enemyHealth.setMax(enemyPokemon.getSpecies().getHp() * 4);
-        enemyHealth.setProgress(enemyPokemon.getCurrentHp());
         playerHealth.setMax(playerPokemon.getSpecies().getHp() * 4);
-        playerHealth.setProgress(playerPokemon.getCurrentHp());
+        ProgressBarAnimation playerAnimation = new ProgressBarAnimation(playerHealth, playerHealth.getProgress(), playerPokemon.getCurrentHp());
+        playerAnimation.setDuration(1000);
+        playerHealth.startAnimation(playerAnimation);
+        ProgressBarAnimation enemyAnimation = new ProgressBarAnimation(enemyHealth, enemyHealth.getProgress(), enemyPokemon.getCurrentHp());
+        enemyAnimation.setDuration(1000);
+        enemyHealth.startAnimation(enemyAnimation);
     }
 }
