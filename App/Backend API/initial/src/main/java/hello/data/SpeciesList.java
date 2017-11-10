@@ -109,7 +109,7 @@ public class SpeciesList {
         } else if (rating < 550) {
             possibilities = allSpecies.stream().filter(pokemonSpecies -> ((pokemonSpecies.getRating() < rating * 1.5) && (pokemonSpecies.getRating() > rating * 0.5))).toArray(PokemonSpecies[]::new);
             Random rand = new Random();
-            returnSpecies = possibilities[rand.nextInt(possibilities.length)];
+            returnSpecies = possibilities[rand.nextInt(possibilities.length) - 1];
         } else {
             returnSpecies = mewtwo;
         }

@@ -118,7 +118,7 @@ public class AttackList {
         Attack[] possibilities = attacks.stream().filter(attack -> (attack.getRating()/10*10 <= (rating * 1.2) / 10 * 10) && (attack.getRating()/10*10 >= (rating * 0.8) / 10 * 10)).toArray(Attack[]::new);
         if (possibilities.length > 1) {
             Random rand = new Random();
-            return possibilities[rand.nextInt(possibilities.length)];
+            return possibilities[rand.nextInt(possibilities.length - 1)];
         } else {
             return new Attack("Struggle", Type.NORMAL, 30, 100, 0);
         }

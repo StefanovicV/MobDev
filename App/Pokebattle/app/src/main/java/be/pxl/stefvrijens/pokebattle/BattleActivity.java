@@ -128,7 +128,6 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
             visuals.addToLog("Go, " + pokemon.getSpecies().getName() + "!");
             visuals.updateVisuals(playerPokemon, enemyPokemon);
             visuals.pokemonEntry(true, false);
-            // TODO: playerPokemon entry animation
             // TODO: Wait 2 sec
             enemyMove();
             // TODO: Enable controls
@@ -180,13 +179,11 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
                     break;
                 }
             }
-            // TODO: Display playerPokemon dead animation
             // BattleOver(false) if no pokemon left with >0 health
             if (hasSurvivingPokemon == false) {
                 visuals.addToLog("You lost.");
                 battleOver(false);
             }
-            // TODO: Display new playerPokemon animation
         } else {
             visuals.addToLog("Enemy " + enemyPokemon.getSpecies().getName() + " fainted.");
             enemyPokemon.setCurrentHp(0);
@@ -194,13 +191,11 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    // TODO: Display enemyPokemon dead animation
                     enemyPokemonNumber++;
                     if (enemyPokemonNumber < enemyTeam.length) {
                         enemyPokemon = enemyTeam[enemyPokemonNumber];
                         visuals.updateVisuals(playerPokemon, enemyPokemon);
                         visuals.pokemonEntry(false, false);
-                        // TODO: Display new enemyPokemon animation
                     } else {
                         battleOver(true);
                     }

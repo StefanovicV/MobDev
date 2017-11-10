@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class BattleVisuals extends Fragment {
     ImageView playerImage;
     TextView enemyName;
     TextView playerName;
+    TextView battleLog;
     ProgressBar enemyHealth;
     ProgressBar playerHealth;
 
@@ -41,12 +43,14 @@ public class BattleVisuals extends Fragment {
         playerName = (TextView) view.findViewById(R.id.playerPokemonName);
         enemyHealth = (ProgressBar) view.findViewById(R.id.enemyPokemonHealth);
         playerHealth = (ProgressBar) view.findViewById(R.id.playerPokemonHealth);
+        battleLog = (TextView) view.findViewById(R.id.battleLogLine);
+        battleLog.setMovementMethod(new ScrollingMovementMethod());
         return view;
     }
 
     public void addToLog(String lineToAdd) {
-        TextView tv = (TextView) getView().findViewById(R.id.battleLogLine);
-        tv.setText(lineToAdd);
+        battleLog.setText(battleLog.getText() + "\n" + lineToAdd);
+
     }
 
     public void updateVisuals(Pokemon playerPokemon, Pokemon enemyPokemon) {
