@@ -18,6 +18,7 @@ import be.pxl.stefvrijens.pokebattle.domainclasses.Attack;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Player;
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
 import be.pxl.stefvrijens.pokebattle.domainclasses.PokemonSpecies;
+import be.pxl.stefvrijens.pokebattle.domainclasses.Type;
 import be.pxl.stefvrijens.pokebattle.services.InternalStorage;
 import be.pxl.stefvrijens.pokebattle.services.PokemonService;
 
@@ -42,6 +43,11 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private void generatePlayerData() {
         PokemonService ps = new PokemonService();
+
+//        //FOR CHEATING PURPOSES:
+//        firstSpecies = new PokemonSpecies(150, "Mewtwo", Type.PSYCHIC, null, 0, null, 0, 150,150,150,150, "https://www.lepetitshaman.com/wp-content/uploads/2016/07/mewtwo-pokemon-go.jpg");
+//        firstAttack = new Attack("Psychic", Type.PSYCHIC, 90, 100, 0);
+//        createNewPlayerData();
 
         System.out.println("Creating PlayerData");
         ps.GetSpeciesById(25, this, new MainMenuCallback() {

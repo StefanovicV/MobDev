@@ -4,6 +4,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -122,9 +123,11 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
             // TODO: Disable controls
             visuals.addToLog("Come back, " + playerPokemon.getSpecies().getName());
             // TODO: playerPokemon leave animation
+            visuals.pokemonEntry(true, true);
             playerPokemon = pokemon;
             visuals.addToLog("Go, " + pokemon.getSpecies().getName() + "!");
             visuals.updateVisuals(playerPokemon, enemyPokemon);
+            visuals.pokemonEntry(true, false);
             // TODO: playerPokemon entry animation
             // TODO: Wait 2 sec
             enemyMove();
@@ -168,6 +171,7 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
         if (isPlayer) {
             visuals.addToLog(playerPokemon.getSpecies().getName() + " fainted.");
             playerPokemon.setCurrentHp(0);
+            visuals.pokemonEntry(true, true);
             boolean hasSurvivingPokemon = false;
             for (int i = 0; i < playerTeam.length; i++) {
                 if (playerTeam[i].getCurrentHp() > 0) {
@@ -186,15 +190,23 @@ public class BattleActivity extends AppCompatActivity implements BattleAttacks.O
         } else {
             visuals.addToLog("Enemy " + enemyPokemon.getSpecies().getName() + " fainted.");
             enemyPokemon.setCurrentHp(0);
-            // TODO: Display enemyPokemon dead animation
-            enemyPokemonNumber++;
-            if (enemyPokemonNumber < enemyTeam.length) {
-                enemyPokemon = enemyTeam[enemyPokemonNumber];
-                visuals.updateVisuals(playerPokemon, enemyPokemon);
-                // TODO: Display new enemyPokemon animation
-            } else {
-                battleOver(true);
-            }
+            visuals.pokemonEntry(false, true);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // TODO: Display enemyPokemon dead animation
+                    enemyPokemonNumber++;
+                    if (enemyPokemonNumber < enemyTeam.length) {
+                        enemyPokemon = enemyTeam[enemyPokemonNumber];
+                        visuals.updateVisuals(playerPokemon, enemyPokemon);
+                        visuals.pokemonEntry(false, false);
+                        // TODO: Display new enemyPokemon animation
+                    } else {
+                        battleOver(true);
+                    }
+                }
+            }, 1000);
+
         }
     }
 

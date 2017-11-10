@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import be.pxl.stefvrijens.pokebattle.domainclasses.Pokemon;
 import be.pxl.stefvrijens.pokebattle.services.ImageService;
+import be.pxl.stefvrijens.pokebattle.services.PokemonEntryAnimation;
 import be.pxl.stefvrijens.pokebattle.services.ProgressBarAnimation;
 
 
@@ -62,5 +63,25 @@ public class BattleVisuals extends Fragment {
         ProgressBarAnimation enemyAnimation = new ProgressBarAnimation(enemyHealth, enemyHealth.getProgress(), enemyPokemon.getCurrentHp());
         enemyAnimation.setDuration(1000);
         enemyHealth.startAnimation(enemyAnimation);
+    }
+    public void pokemonEntry(boolean isPlayer, boolean isLeaving) {
+        PokemonEntryAnimation animation;
+        int alpha;
+        if (isLeaving) {
+            alpha = 0;
+        } else  {
+            alpha = 255;
+        }
+        if (isPlayer) {
+            animation = new PokemonEntryAnimation(playerImage, alpha);
+        } else {
+            animation = new PokemonEntryAnimation(enemyImage, alpha);
+        }
+        animation.setDuration(1000);
+        if (isPlayer) {
+            playerImage.startAnimation(animation);
+        } else {
+            enemyImage.startAnimation(animation);
+        }
     }
 }
